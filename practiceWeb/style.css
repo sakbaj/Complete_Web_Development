@@ -1,0 +1,57 @@
+/* CSS */
+body {
+    background-image: url('image.jpg');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: cursive;
+}
+
+#main {
+    background-color: #CFFAFE;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+input {
+    background-color: #fefbfb;
+    padding: 10px;
+    border-radius: 10px;
+    border-color: black;
+    margin-bottom: 15px;
+}
+button {
+    background-color: #fefbfb;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    border-color: black;
+    width: 200px;
+    margin-left: 50px;
+}
+button:hover {
+    background-color: #b3b0b0;
+}
+.password-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.password-header a{
+    color:#0d6efd;
+    text-decoration:none;
+    font-size:17px;
+}
+.remember:hover {
+    cursor: pointer;
+}

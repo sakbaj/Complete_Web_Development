@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoVista — Build Your Dream Drive</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            base: { 50:'#f0ece4',100:'#d4cfc4',200:'#8a8578',300:'#5a5650',400:'#353230',500:'#252525',600:'#1c1c1c',700:'#161616',800:'#111111',900:'#0a0a0a',950:'#060606' },
+            accent: { DEFAULT:'#c8956c', light:'#dab48e', dark:'#a87a55' }
+          },
+          fontFamily: { display:['Playfair Display','serif'], sans:['DM Sans','sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{overflow-x:hidden}
+    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#0a0a0a}::-webkit-scrollbar-thumb{background:#353230;border-radius:3px}
+
+    @keyframes enterRight{from{opacity:0;transform:translateX(80px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes enterLeft{from{opacity:0;transform:translateX(-80px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes exitLeft{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(-80px)}}
+    @keyframes exitRight{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(80px)}}
+    .enter-right{animation:enterRight .55s cubic-bezier(.22,1,.36,1) forwards}
+    .enter-left{animation:enterLeft .55s cubic-bezier(.22,1,.36,1) forwards}
+    .exit-left{animation:exitLeft .28s ease forwards}
+    .exit-right{animation:exitRight .28s ease forwards}
+
+    @keyframes cardUp{from{opacity:0;transform:translateY(40px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .card-up{opacity:0;animation:cardUp .5s cubic-bezier(.22,1,.36,1) forwards}
+
+    @keyframes drawPath{to{stroke-dashoffset:0}}
+    .draw-body{stroke-dasharray:2000;stroke-dashoffset:2000;animation:drawPath 1.4s cubic-bezier(.22,1,.36,1) .15s forwards}
+    .draw-window{stroke-dasharray:1000;stroke-dashoffset:1000;animation:drawPath .9s cubic-bezier(.22,1,.36,1) .5s forwards}
+    .draw-detail{stroke-dasharray:400;stroke-dashoffset:400;animation:drawPath .6s cubic-bezier(.22,1,.36,1) .8s forwards}
+
+    @keyframes fadeFill{from{opacity:0}to{opacity:1}}
+    .fill-in{opacity:0;animation:fadeFill .7s ease 1s forwards}
+    .fill-glow{opacity:0;animation:fadeFill .8s ease 1.2s forwards}
+    .detail-in{opacity:0;animation:fadeFill .5s ease 1.1s forwards}
+
+    .progress-fill{transition:width .6s cubic-bezier(.22,1,.36,1)}
+    .step-dot{transition:all .45s cubic-bezier(.22,1,.36,1)}
+
+    @keyframes selPulse{0%{box-shadow:0 0 0 0 rgba(200,149,108,.4)}70%{box-shadow:0 0 0 16px rgba(200,149,108,0)}100%{box-shadow:0 0 0 0 rgba(200,149,108,0)}}
+    .sel-pulse{animation:selPulse .6s ease}
+
+    @keyframes btnGlow{0%,100%{box-shadow:0 4px 24px rgba(200,149,108,.2)}50%{box-shadow:0 4px 36px rgba(200,149,108,.5)}}
+    .btn-glow{animation:btnGlow 2s ease-in-out infinite}
+
+    @keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+    .modal-anim{animation:modalIn .35s ease forwards}
+    @keyframes overlayIn{from{opacity:0}to{opacity:1}}
+    .overlay-anim{animation:overlayIn .25s ease forwards}
+
+    @keyframes progFill{from{width:0}}
+    .prog-anim{animation:progFill .8s ease forwards}
+
+    @keyframes toastIn{from{opacity:0;transform:translateX(120%)}to{opacity:1;transform:translateX(0)}}
+    .toast-anim{animation:toastIn .4s ease forwards}
+
+    @keyframes slideUp{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}
+    .slide-up{animation:slideUp .4s ease forwards}
+
+    @keyframes ambientShift{0%,100%{background-position:0% 50%,100% 50%}50%{background-position:100% 50%,0% 50%}}
+    .ambient-bg{background:radial-gradient(ellipse at 25% 40%,rgba(200,149,108,.07) 0%,transparent 55%),radial-gradient(ellipse at 75% 60%,rgba(200,149,108,.05) 0%,transparent 55%),#060606;background-size:200% 200%;animation:ambientShift 18s ease-in-out infinite}
+    .grid-dots{background-image:radial-gradient(rgba(200,149,108,.05) 1px,transparent 1px);background-size:32px 32px}
+
+    .modal-scroll::-webkit-scrollbar{width:4px}
+    .modal-scroll::-webkit-scrollbar-thumb{background:#353230;border-radius:2px}
+
+    @keyframes heroText{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .hero-in{opacity:0;animation:heroText .7s ease forwards}
+
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body class="bg-base-950 text-base-50 font-sans antialiased">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useMemo, useCallback, useRef } = React;
+
+    /* ===== CAR DATA ===== */
+    const CARS = [
+      { id:1,name:"Model S Plaid",manufacturer:"Tesla",bodyType:"Sedan",fuelType:"EV",year:2024,price:89990,specs:{zeroToHundred:1.99,topSpeed:322,horsepower:1020,torque:1420,weight:2162,drivetrain:"AWD",battery:100,range:637},colors:["#C0392B","#F5F5F5","#1A1A2E","#2980B9","#7F8C8D","#2C3E50"],defaultColor:"#C0392B",description:"The quickest production sedan ever made, featuring tri-motor AWD and over 1,000 horsepower with a claimed range exceeding 600 km." },
+      { id:2,name:"Model X Plaid",manufacturer:"Tesla",bodyType:"SUV",fuelType:"EV",year:2024,price:94990,specs:{zeroToHundred:2.54,topSpeed:250,horsepower:1020,torque:1420,weight:2474,drivetrain:"AWD",battery:100,range:576},colors:["#F5F5F5","#1A1A2E","#2980B9","#C0392B","#7F8C8D"],defaultColor:"#F5F5F5",description:"A high-performance SUV that defies expectations with supercar acceleration, falcon-wing doors, and seating for up to seven." },
+      { id:3,name:"M4 Competition",manufacturer:"BMW",bodyType:"Coupe",fuelType:"Petrol",year:2024,price:84700,specs:{zeroToHundred:3.4,topSpeed:290,horsepower:503,torque:650,weight:1725,drivetrain:"RWD",engineCapacity:2993,cylinders:6},colors:["#F5F5F5","#1A1A2E","#2E7D32","#F9A825","#C62828"],defaultColor:"#2E7D32",description:"The definitive modern sports coupe, blending razor-sharp handling with raw inline-six power and an aggressive stance." },
+      { id:4,name:"X5 M Competition",manufacturer:"BMW",bodyType:"SUV",fuelType:"Petrol",year:2024,price:114500,specs:{zeroToHundred:3.7,topSpeed:290,horsepower:617,torque:750,weight:2370,drivetrain:"AWD",engineCapacity:4395,cylinders:8},colors:["#1A1A2E","#F5F5F5","#1565C0","#546E7A","#2E7D32"],defaultColor:"#1565C0",description:"An SUV that performs like a sports car, packing a twin-turbo V8 and track-ready dynamics with everyday practicality." },
+      { id:5,name:"911 Turbo S",manufacturer:"Porsche",bodyType:"Coupe",fuelType:"Petrol",year:2024,price:230400,specs:{zeroToHundred:2.7,topSpeed:330,horsepower:640,torque:800,weight:1640,drivetrain:"AWD",engineCapacity:3745,cylinders:6},colors:["#8E8E8E","#C62828","#F9A825","#1A1A2E","#F5F5F5"],defaultColor:"#8E8E8E",description:"The benchmark all-weather supercar, delivering devastating acceleration, telepathic steering, and timeless silhouette." },
+      { id:6,name:"Taycan Turbo S",manufacturer:"Porsche",bodyType:"Sedan",fuelType:"EV",year:2024,price:192700,specs:{zeroToHundred:2.8,topSpeed:260,horsepower:761,torque:1050,weight:2295,drivetrain:"AWD",battery:93.4,range:489},colors:["#F5F5F5","#1A1A2E","#0D47A1","#01579B","#C62828"],defaultColor:"#0D47A1",description:"Proof that electric performance can carry the soul of a sports car. The Taycan delivers relentless thrust with Porsche DNA." },
+      { id:7,name:"AMG GT 63 S",manufacturer:"Mercedes",bodyType:"Sedan",fuelType:"Petrol",year:2024,price:139900,specs:{zeroToHundred:3.2,topSpeed:315,horsepower:630,torque:900,weight:2045,drivetrain:"AWD",engineCapacity:3982,cylinders:8},colors:["#1A1A2E","#9E9E9E","#757575","#F5F5F5"],defaultColor:"#1A1A2E",description:"A four-door coupe that combines a hand-built AMG biturbo V8 with cutting-edge luxury and devastating straight-line speed." },
+      { id:8,name:"EQS 580",manufacturer:"Mercedes",bodyType:"Sedan",fuelType:"EV",year:2024,price:127050,specs:{zeroToHundred:4.3,topSpeed:210,horsepower:516,torque:858,weight:2585,drivetrain:"AWD",battery:107.8,range:563},colors:["#1A1A2E","#757575","#9E9E9E","#F5F5F5"],defaultColor:"#757575",description:"The electric S-Class redefined. The EQS combines whisper-quiet luxury with a cavernous cabin and over 560 km of range." },
+      { id:9,name:"RS e-tron GT",manufacturer:"Audi",bodyType:"Sedan",fuelType:"EV",year:2024,price:149900,specs:{zeroToHundred:3.1,topSpeed:250,horsepower:637,torque:830,weight:2347,drivetrain:"AWD",battery:93.4,range:488},colors:["#1A1A2E","#616161","#C62828","#F5F5F5"],defaultColor:"#616161",description:"A grand tourer that proves sustainable driving can be thrilling, with striking design and exhilarating electric performance." },
+      { id:10,name:"RS Q8",manufacturer:"Audi",bodyType:"SUV",fuelType:"Petrol",year:2024,price:125000,specs:{zeroToHundred:3.8,topSpeed:305,horsepower:591,torque:800,weight:2385,drivetrain:"AWD",engineCapacity:3996,cylinders:8},colors:["#546E7A","#0D47A1","#616161","#1A1A2E","#F5F5F5"],defaultColor:"#546E7A",description:"The pinnacle of Audi SUV performance combining twin-turbo V8 power with Quattro all-wheel drive and bold presence." },
+      { id:11,name:"Huracan EVO",manufacturer:"Lamborghini",bodyType:"Coupe",fuelType:"Petrol",year:2024,price:287400,specs:{zeroToHundred:2.9,topSpeed:325,horsepower:640,torque:600,weight:1422,drivetrain:"AWD",engineCapacity:5204,cylinders:10},colors:["#2E7D32","#F9A825","#E65100","#F5F5F5","#1A1A2E"],defaultColor:"#2E7D32",description:"A naturally-aspirated V10 masterpiece delivering pure unfiltered driving emotion through an intoxicating soundtrack." },
+      { id:12,name:"SF90 Stradale",manufacturer:"Ferrari",bodyType:"Coupe",fuelType:"Hybrid",year:2024,price:625000,specs:{zeroToHundred:2.5,topSpeed:340,horsepower:986,torque:800,weight:1570,drivetrain:"AWD",engineCapacity:3990,cylinders:8,battery:7.9,range:25},colors:["#C62828","#F9A825","#F5F5F5","#1A1A2E","#0D47A1"],defaultColor:"#C62828",description:"Ferrari first plug-in hybrid, a technological tour de force marrying a twin-turbo V8 with three electric motors." }
+    ];
+
+    /* ===== SVG SILHOUETTES ===== */
+    const SILS = {
+      sedan:{body:"M40,140 L40,118 L65,118 L90,72 L185,48 L300,48 L345,78 L380,118 L430,118 L430,140 L415,150 L55,150Z",fw:"M100,113 L115,75 L180,52 L180,113Z",rw:"M185,52 L295,52 L338,82 L338,113 L185,113Z",w:[{cx:120,cy:150,r:24},{cx:370,cy:150,r:24}],hl:{x:422,y:121,w:10,h:7},tl:{x:42,y:121,w:8,h:7}},
+      suv:{body:"M40,158 L40,130 L60,130 L78,65 L185,40 L295,40 L340,65 L380,130 L430,130 L430,158 L415,168 L55,168Z",fw:"M88,125 L98,68 L180,44 L180,125Z",rw:"M185,44 L290,44 L332,70 L332,125 L185,125Z",w:[{cx:120,cy:168,r:26},{cx:375,cy:168,r:26}],hl:{x:422,y:133,w:10,h:7},tl:{x:42,y:133,w:8,h:7}},
+      coupe:{body:"M40,135 L40,115 L65,115 L98,70 L220,46 L330,70 L375,115 L430,115 L430,135 L415,145 L55,145Z",fw:"M108,110 L122,72 L215,50 L215,110Z",rw:"M220,50 L325,72 L370,110 L220,110Z",w:[{cx:120,cy:145,r:22},{cx:370,cy:145,r:22}],hl:{x:422,y:118,w:10,h:7},tl:{x:42,y:118,w:8,h:7}}
+    };
+
+    /* ===== META DATA ===== */
+    const MFR={Tesla:{icon:'fa-bolt-lightning',tag:'Electric Innovation',color:'#C0392B'},BMW:{icon:'fa-shield-halved',tag:'The Driving Machine',color:'#2E7D32'},Porsche:{icon:'fa-horse',tag:'There Is No Substitute',color:'#8E8E8E'},Mercedes:{icon:'fa-star',tag:'The Best or Nothing',color:'#9E9E9E'},Audi:{icon:'fa-circle-notch',tag:'Vorsprung durch Technik',color:'#546E7A'},Lamborghini:{icon:'fa-gem',tag:'Uncompromising Excellence',color:'#2E7D32'},Ferrari:{icon:'fa-flag-checkered',tag:'The Racing Legend',color:'#C62828'}};
+    const BDM={Sedan:{desc:'Elegant four-door design with refined aerodynamics and balanced proportions.',icon:'fa-car-side'},SUV:{desc:'Commanding presence with elevated ride height, spacious cabin, and versatile capability.',icon:'fa-truck-monster'},Coupe:{desc:'Sculpted two-door silhouette emphasizing performance heritage and dynamic aesthetics.',icon:'fa-car-rear'}};
+    const FLM={EV:{desc:'Instant torque, zero emissions, and silent acceleration. The future of performance.',icon:'fa-charging-station',color:'#2E7D32'},Hybrid:{desc:'Combined combustion and electric power for maximum flexibility and efficiency.',icon:'fa-leaf',color:'#00897B'},Petrol:{desc:'Raw internal combustion character — throttle response, exhaust notes, mechanical purity.',icon:'fa-gas-pump',color:'#E65100'}};
+    const MFRS=[...new Set(CARS.map(c=>c.manufacturer))].sort();
+    const BODIES=['Sedan','SUV','Coupe'];
+    const FUELS=['EV','Hybrid','Petrol'];
+    const fmtP=p=>'$'+p.toLocaleString('en-US');
+    const fmtN=(n,d=1)=>Number(n).toFixed(d);
+
+    /* ===== ANIMATED NUMBER ===== */
+    function AnimNum({target,duration:dr=500}){
+      const[v,setV]=useState(0);const prev=useRef(0);
+      useEffect(()=>{const from=prev.current,t0=performance.now();prev.current=target;(function tk(now){const p=Math.min((now-t0)/dr,1);const e=1-Math.pow(1-p,3);setV(Math.round(from+(target-from)*e));if(p<1)requestAnimationFrame(tk)})(t0)},[target,dr]);
+      return React.createElement('span',null,v);
+    }
+
+    /* ===== CAR ASSEMBLY SVG (NRG-style draw animation) ===== */
+    function CarAssembly({bodyType,step,hoverColor}){
+      const s=SILS[bodyType]||SILS.sedan;
+      const col=hoverColor||'#c8956c';
+      const sk='asm-'+bodyType+'-'+Math.min(step,2);
+      return(
+        <div className="relative w-full max-w-lg mx-auto select-none">
+          <svg viewBox="0 0 480 200" className="w-full h-auto" style={{filter:'drop-shadow(0 16px 48px '+col+'22)'}}>
+            <defs>
+              <linearGradient id="agrd" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor={col} stopOpacity="0.9"/><stop offset="100%" stopColor={col} stopOpacity="0.5"/></linearGradient>
+              <filter id="glw"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            {/* Ground line */}
+            <line x1="30" y1={s.w[0].cy+s.w[0].r+6} x2="450" y2={s.w[0].cy+s.w[0].r+6} stroke={col} strokeWidth="0.5" style={{opacity:step>=0?.15:0,transition:'opacity .5s'}}/>
+            {/* Wheels */}
+            <g style={{opacity:step>=0?1:0,transformOrigin:'center',transform:step>=0?'scale(1)':'scale(0.7)',transition:'all .7s cubic-bezier(.22,1,.36,1)'}}>
+              {s.w.map((w,i)=>(
+                <g key={i}>
+                  <circle cx={w.cx} cy={w.cy} r={w.r} fill="#0a0a0a" stroke={step>=1?col+'44':'#222'} strokeWidth="1.5" style={{transition:'stroke .6s .3s'}}/>
+                  <circle cx={w.cx} cy={w.cy} r={w.r*.72} fill="#141414"/>
+                  <circle cx={w.cx} cy={w.cy} r={w.r*.48} fill="#1e1e1e"/>
+                  <circle cx={w.cx} cy={w.cy} r={w.r*.16} fill="#2a2a2a"/>
+                  {[0,60,120,180,240,300].map(a=><line key={a} x1={w.cx} y1={w.cy} x2={w.cx+Math.cos(a*Math.PI/180)*w.r*.65} y2={w.cy+Math.sin(a*Math.PI/180)*w.r*.65} stroke="#222" strokeWidth="1" opacity=".5"/>)}
+                </g>
+              ))}
+            </g>
+            {/* Body outline — draws at step 1 */}
+            <path key={'bo-'+sk} d={s.body} fill="none" stroke={col} strokeWidth="2" strokeLinejoin="round" className={step>=1?'draw-body':''} style={{opacity:step>=1?1:0}}/>
+            {/* Windows — draw at step 2 */}
+            <path key={'fw-'+sk} d={s.fw} fill={step>=2?'rgba(120,180,220,0.08)':'none'} stroke={col} strokeWidth="1.2" className={step>=2?'draw-window':''} style={{opacity:0}}/>
+            <path key={'rw-'+sk} d={s.rw} fill={step>=2?'rgba(120,180,220,0.06)':'none'} stroke={col} strokeWidth="1.2" className={step>=2?'draw-window':''} style={{opacity:0,animationDelay:step>=2?'.65s':'0s'}}/>
+            {/* Body fill — fades at step 2 */}
+            <path key={'bf-'+sk} d={s.body} fill="url(#agrd)" stroke="none" className={step>=2?'fill-in':''} style={{opacity:0}}/>
+            {/* Glow outline — step 2 */}
+            <path key={'gl-'+sk} d={s.body} fill="none" stroke={col} strokeWidth="6" filter="url(#glw)" className={step>=2?'fill-glow':''} style={{opacity:0}}/>
+            {/* Headlights / taillights */}
+            <rect key={'hl-'+sk} x={s.hl.x} y={s.hl.y} width={s.hl.w} height={s.hl.h} rx="2" fill="rgba(255,255,210,0.75)" className={step>=2?'detail-in':''} style={{opacity:0}}/>
+            <rect key={'tl-'+sk} x={s.tl.x} y={s.tl.y} width={s.tl.w} height={s.tl.h} rx="2" fill="rgba(255,40,40,0.7)" className={step>=2?'detail-in':''} style={{opacity:0,animationDelay:step>=2?'1.2s':'0s'}}/>
+            {/* Side detail lines */}
+            <line key={'d1-'+sk} x1="55" y1={s.w[0].cy} x2={s.w[0].cx-s.w[0].r-5} y2={s.w[0].cy} stroke={col} strokeWidth="1" className={step>=2?'detail-in':''} style={{opacity:0,animationDelay:step>=2?'1.3s':'0s'}}/>
+            <line key={'d2-'+sk} x1={s.w[0].cx+s.w[0].r+5} y1={s.w[0].cy} x2={s.w[1].cx-s.w[1].r-5} y2={s.w[1].cy} stroke={col} strokeWidth="1" className={step>=2?'detail-in':''} style={{opacity:0,animationDelay:step>=2?'1.4s':'0s'}}/>
+            <line key={'d3-'+sk} x1={s.w[1].cx+s.w[1].r+5} y1={s.w[1].cy} x2="415" y2={s.w[1].cy} stroke={col} strokeWidth="1" className={step>=2?'detail-in':''} style={{opacity:0,animationDelay:step>=2?'1.5s':'0s'}}/>
+          </svg>
+          <div className="h-6 mx-auto rounded-full blur-lg transition-all duration-700" style={{width:step>=2?'55%':'30%',background:col,opacity:step>=2?.18:.06,margin:'0 auto'}}/>
+        </div>
+      );
+    }
+
+    /* ===== SMALL CAR SILHOUETTE (static fill) ===== */
+    function CarSil({type,color,className:''}){
+      const s=SILS[type]||SILS.sedan;const gid='cg'+color.replace('#','');
+      return(
+        <svg viewBox="0 0 480 200" className={className}>
+          <defs><linearGradient id={gid} x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor={color}/><stop offset="100%" stopColor={color} stopOpacity=".55"/></linearGradient></defs>
+          <path d={s.body} fill={'url(#'+gid+')'}/><path d={s.fw} fill="rgba(0,0,0,.35)"/><path d={s.rw} fill="rgba(0,0,0,.3)"/>
+          {s.w.map((w,i)=><g key={i}><circle cx={w.cx} cy={w.cy} r={w.r} fill="#080808"/><circle cx={w.cx} cy={w.cy} r={w.r*.6} fill="#1a1a1a"/><circle cx={w.cx} cy={w.cy} r={w.r*.15} fill="#333"/></g>)}
+          <rect x={s.hl.x} y={s.hl.y} width={s.hl.w} height={s.hl.h} rx="2" fill="rgba(255,255,220,.7)"/><rect x={s.tl.x} y={s.tl.y} width={s.tl.w} height={s.tl.h} rx="2" fill="rgba(255,40,40,.65)"/>
+        </svg>
+      );
+    }
+
+    /* ===== PROGRESS INDICATOR ===== */
+    function Progress({current,labels,onJump}){
+      return(
+        <div className="flex items-center w-full max-w-2xl mx-auto px-2">
+          {labels.map((l,i)=>(
+            <React.Fragment key={i}>
+              <button onClick={()=>i<current&&onJump(i)} disabled={i>=current} className={'step-dot relative flex flex-col items-center shrink-0 '+(i<current?'cursor-pointer':'cursor-default')} aria-label={'Step '+(i+1)}>
+                <div className={'w-11 h-11 rounded-full flex items-center justify-center text-sm font-bold border-2 '+(i<current?'bg-accent/20 border-accent text-accent':i===current?'bg-accent border-accent text-base-950 scale-110 shadow-lg shadow-accent/25':'bg-base-700 border-base-500 text-base-400')}>
+                  {i<current?<i className="fa-solid fa-check text-xs"/>:i+1}
+                </div>
+                <span className={'text-[10px] mt-1.5 font-medium tracking-wide uppercase hidden sm:block '+(i<=current?'text-accent':'text-base-400')}>{l}</span>
+              </button>
+              {i<labels.length-1&&<div className="flex-1 h-0.5 bg-base-600 mx-1 sm:mx-2 rounded-full overflow-hidden relative mb-4 sm:mb-5"><div className="progress-fill absolute inset-y-0 left-0 bg-accent rounded-full" style={{width:i<current?'100%':'0%'}}/></div>}
+            </React.Fragment>
+          ))}
+        </div>
+      );
+    }
+
+    /* ===== SELECTION CARD ===== */
+    function SelCard({label,sub,icon,iconColor,selected,index,onSelect,onMouseEnter,onMouseLeave,children}){
+      return(
+        <button onClick={onSelect} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
+          className={'card-up group relative text-left rounded-2xl border-2 p-5 sm:p-6 transition-all duration-300 w-full '+(selected?'bg-accent/10 border-accent shadow-lg shadow-accent/10 sel-pulse':'bg-base-800/70 border-base-500/50 hover:border-base-300 hover:bg-base-700/70 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30')}
+          style={{animationDelay:(index*.08)+'s'}}>
+          {selected&&<div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-accent flex items-center justify-center"><i className="fa-solid fa-check text-base-950 text-[10px]"/></div>}
+          {icon&&<div className={'w-10 h-10 rounded-xl flex items-center justify-center mb-3 transition-colors '+(selected?'bg-accent/20':'bg-base-600 group-hover:bg-base-500')}><i className={'fa-solid '+icon+' text-lg'} style={{color:selected?'#c8956c':iconColor||'#8a8578'}}/></div>}
+          <h3 className={'text-lg font-bold mb-1 transition-colors '+(selected?'text-accent-light':'text-base-50 group-hover:text-base-50')}>{label}</h3>
+          <p className="text-sm text-base-300 leading-relaxed">{sub}</p>
+          {children}
+        </button>
+      );
+    }
+
+    /* ===== TOAST ===== */
+    function Toasts({items}){return(<div className="fixed top-5 right-5 z-[100] flex flex-col gap-2 pointer-events-none" style={{maxWidth:'340px'}}>{items.map(t=><div key={t.id} className="toast-anim pointer-events-auto px-4 py-3 rounded-xl border text-sm font-medium shadow-xl" style={{background:'#161616',borderColor:t.type==='success'?'#2E7D32':t.type==='error'?'#C62828':'#c8956c',color:'#f0ece4'}}><i className={'mr-2 '+(t.type==='success'?'fa-check-circle':t.type==='error'?'fa-circle-exclamation':'fa-circle-info')}></i>{t.message}</div>)}</div>);}
+
+    /* ===== SPEC BAR ===== */
+    function SpecBar({value,max,invert,unit,keyProp}){const pct=invert?Math.max(0,Math.min(100,(1-value/max)*100)):Math.max(0,Math.min(100,(value/max)*100));return(<div className="flex items-center gap-3"><div className="flex-1 h-2 rounded-full bg-base-500 overflow-hidden"><div key={keyProp} className="h-full rounded-full prog-anim" style={{width:pct+'%',background:'linear-gradient(90deg,#c8956c,#dab48e)'}}/></div><span className="text-xs text-base-200 w-20 text-right font-medium tabular-nums">{fmtN(value)}{unit}</span></div>);}
+
+    /* ===== DETAIL MODAL ===== */
+    function DetailModal({car,color,onColor,onClose,inComp,onToggle}){
+      if(!car)return null;
+      const s=car.specs,isEV=car.fuelType==='EV',isH=car.fuelType==='Hybrid',ak=car.id+'-'+color;
+      const rows=[{l:'0-100 km/h',v:s.zeroToHundred,mx:5,u:'s',inv:true,ic:'fa-bolt'},{l:'Top Speed',v:s.topSpeed,mx:350,u:' km/h',inv:false,ic:'fa-gauge-high'},{l:'Horsepower',v:s.horsepower,mx:1100,u:' HP',inv:false,ic:'fa-horse'},{l:'Torque',v:s.torque,mx:1500,u:' Nm',inv:false,ic:'fa-arrows-spin'},{l:'Weight',v:s.weight,mx:2700,u:' kg',inv:true,ic:'fa-weight-hanging'}];
+      if(isEV||isH)rows.push({l:'Battery',v:s.battery,mx:120,u:' kWh',inv:false,ic:'fa-battery-full'});
+      if(isEV||isH)rows.push({l:'Range',v:s.range,mx:700,u:' km',inv:false,ic:'fa-road'});
+      if(!isEV)rows.push({l:'Engine',v:s.engineCapacity,mx:6000,u:' cc',inv:false,ic:'fa-gear'});
+      return(
+        <div className="fixed inset-0 z-[80] flex items-center justify-center p-4" onClick={onClose}>
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm overlay-anim"/>
+          <div className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto modal-scroll rounded-2xl bg-base-800 border border-base-500/60 shadow-2xl shadow-black/60 modal-anim" onClick={e=>e.stopPropagation()}>
+            <button onClick={onClose} className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-base-600/80 border border-base-500 text-base-200 hover:text-base-50 hover:bg-base-500 transition-all flex items-center justify-center"><i className="fa-solid fa-xmark"/></button>
+            <div className="grid md:grid-cols-2">
+              <div className="p-8 md:p-10 flex flex-col items-center justify-center bg-gradient-to-br from-base-700/50 to-base-800/80 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none border-b md:border-b-0 md:border-r border-base-500/30">
+                <div className="w-full max-w-sm mb-8"><CarSil type={car.bodyType} color={color} className="w-full h-auto"/><div className="h-8 -mt-2 rounded-b-full opacity-25 blur-lg mx-auto" style={{background:color,width:'60%'}}/></div>
+                <p className="text-xs font-semibold text-base-300 uppercase tracking-wider mb-3">Available Colors</p>
+                <div className="flex gap-2.5 flex-wrap justify-center">{car.colors.map(c=><button key={c} onClick={()=>onColor(car.id,c)} title={c} aria-label={'Color '+c} className={'w-9 h-9 rounded-full border-2 transition-all duration-300 hover:scale-110 '+(c===color?'border-accent scale-110':'border-base-500/60 hover:border-base-300')} style={{background:c,boxShadow:c===color?'0 0 18px '+c+'55':'none'}}/>)}</div>
+                <p className="text-center text-xs text-base-400 mt-2 font-mono">{color.toUpperCase()}</p>
+              </div>
+              <div className="p-8 md:p-10">
+                <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-accent/15 text-accent border border-accent/30">{car.fuelType} · {car.bodyType}</span>
+                <p className="text-accent font-semibold text-sm uppercase tracking-wider mt-3">{car.manufacturer} · {car.year}</p>
+                <h2 className="font-display text-3xl md:text-4xl font-bold text-base-50 mt-1 mb-2">{car.name}</h2>
+                <p className="text-2xl font-bold text-accent mb-4">{fmtP(car.price)}</p>
+                <p className="text-sm text-base-200 leading-relaxed mb-6">{car.description}</p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="px-3 py-1.5 rounded-lg bg-base-700 border border-base-500/50 text-xs font-medium text-base-200"><i className="fa-solid fa-car-side mr-1.5 text-accent/60"></i>{s.drivetrain}</span>
+                  {!isEV&&s.cylinders&&<span className="px-3 py-1.5 rounded-lg bg-base-700 border border-base-500/50 text-xs font-medium text-base-200"><i className="fa-solid fa-circle-dot mr-1.5 text-accent/60"></i>{s.cylinders} Cylinders</span>}
+                </div>
+                <div className="space-y-4 mb-8">{rows.map(r=><div key={r.l}><div className="flex items-center gap-2 mb-1.5"><i className={'fa-solid '+r.ic+' text-accent/50 text-xs w-4 text-center'}></i><span className="text-xs font-semibold text-base-300 uppercase tracking-wider">{r.l}</span></div><SpecBar value={r.v} max={r.mx} invert={r.inv} unit={r.u} keyProp={ak+'-'+r.l}/></div>)}</div>
+                <button onClick={()=>onToggle(car.id)} className={'w-full py-3 rounded-xl text-sm font-bold uppercase tracking-wider transition-all duration-300 border flex items-center justify-center gap-2 '+(inComp?'bg-accent/15 text-accent border-accent/40 hover:bg-accent/25':'bg-base-700 text-base-200 border-base-500 hover:border-accent/40 hover:text-base-50')}><i className={'fa-solid '+(inComp?'fa-check':'fa-scale-balanced')}/>{inComp?'Added to Compare':'Add to Compare'}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    /* ===== COMPARE MODAL ===== */
+    function CompareModal({list,colors,onRemove,onClose}){
+      if(list.length<2)return null;
+      const cars=list.map(id=>CARS.find(c=>c.id===id)).filter(Boolean);
+      const defs=[{k:'zeroToHundred',l:'0-100 km/h',u:'s',low:true},{k:'topSpeed',l:'Top Speed',u:'km/h',low:false},{k:'horsepower',l:'Horsepower',u:'HP',low:false},{k:'torque',l:'Torque',u:'Nm',low:false},{k:'weight',l:'Weight',u:'kg',low:true},{k:'drivetrain',l:'Drivetrain',u:'',low:false,txt:true},{k:'fuelType',l:'Fuel',u:'',low:false,txt:true}];
+      if(cars.some(c=>c.specs.battery))defs.push({k:'battery',l:'Battery',u:'kWh',low:false});
+      if(cars.some(c=>c.specs.range))defs.push({k:'range',l:'Range',u:'km',low:false});
+      if(cars.some(c=>c.specs.engineCapacity))defs.push({k:'engineCapacity',l:'Engine',u:'cc',low:false});
+      function best(k,v,low){if(typeof v!=='number')return false;const vals=cars.map(c=>c.specs[k]).filter(x=>typeof x==='number');return vals.length>=2&&(low?v<=Math.min(...vals):v>=Math.max(...vals));}
+      return(
+        <div className="fixed inset-0 z-[80] flex items-center justify-center p-4" onClick={onClose}>
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm overlay-anim"/>
+          <div className="relative w-full max-w-6xl max-h-[90vh] overflow-y-auto modal-scroll rounded-2xl bg-base-800 border border-base-500/60 shadow-2xl shadow-black/60 modal-anim" onClick={e=>e.stopPropagation()}>
+            <div className="sticky top-0 z-10 bg-base-800/95 backdrop-blur-md border-b border-base-500/40 p-6 pb-4 rounded-t-2xl">
+              <div className="flex items-center justify-between mb-4"><h2 className="font-display text-2xl font-bold text-base-50">Comparison Matrix</h2><button onClick={onClose} className="w-9 h-9 rounded-full bg-base-600 border border-base-500 text-base-200 hover:text-base-50 hover:bg-base-500 transition-all flex items-center justify-center"><i className="fa-solid fa-xmark text-sm"/></button></div>
+              <div className="grid gap-4" style={{gridTemplateColumns:'repeat('+cars.length+',1fr)'}}>
+                {cars.map(car=><div key={car.id} className="text-center"><div className="flex justify-center mb-2"><div className="w-28"><CarSil type={car.bodyType} color={colors[car.id]||car.defaultColor} className="w-full h-auto"/></div></div><p className="text-accent text-xs font-semibold uppercase tracking-wider">{car.manufacturer}</p><p className="text-base-50 font-bold text-lg">{car.name}</p><p className="text-accent font-bold text-sm mt-1">{fmtP(car.price)}</p><button onClick={()=>onRemove(car.id)} className="mt-2 text-xs text-base-400 hover:text-red-400 transition-colors"><i className="fa-solid fa-xmark mr-1"></i>Remove</button></div>)}
+              </div>
+            </div>
+            <div className="p-6 pt-2 space-y-0">
+              {defs.map((d,i)=><div key={d.k} className={'grid gap-4 py-3 px-4 rounded-lg '+(i%2===0?'bg-base-700/25':'')} style={{gridTemplateColumns:'130px repeat('+cars.length+',1fr)'}}>
+                <div className="flex items-center"><span className="text-xs font-semibold text-base-300 uppercase tracking-wider">{d.l}</span></div>
+                {cars.map(car=>{const v=d.txt?(d.k==='fuelType'?car.fuelType:car.specs[d.k]||'—'):car.specs[d.k];const b=!d.txt&&v!==undefined&&best(d.k,v,d.low);return <div key={car.id} className={'text-center text-sm font-semibold '+(b?'text-accent':'text-base-100')}>{v!==undefined?(d.txt?v:fmtN(v)+(d.u?' '+d.u:'')):'—'}{b&&<i className="fa-solid fa-crown text-accent text-[10px] ml-1"></i>}</div>;})}
+              </div>)}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    /* ===== COMPARE BAR ===== */
+    function CompareBar({list,onRemove,onOpen,onClear}){
+      if(!list.length)return null;
+      const cars=list.map(id=>CARS.find(c=>c.id===id)).filter(Boolean);
+      return(
+        <div className="fixed bottom-0 left-0 right-0 z-[60] slide-up">
+          <div className="max-w-5xl mx-auto px-4 py-3">
+            <div className="flex items-center gap-3 p-3 rounded-2xl bg-base-800/95 backdrop-blur-xl border border-base-500/60 shadow-2xl shadow-black/50">
+              <div className="flex items-center gap-2 flex-1 overflow-x-auto">
+                {cars.map(car=><div key={car.id} className="flex items-center gap-2 px-3 py-2 rounded-xl bg-base-700/80 border border-base-500/40 shrink-0"><div className="w-14 h-7"><CarSil type={car.bodyType} color={car.defaultColor} className="w-full h-full"/></div><div className="pr-1"><p className="text-xs font-bold text-base-50 whitespace-nowrap">{car.name}</p><p className="text-[10px] text-base-300">{car.manufacturer}</p></div><button onClick={()=>onRemove(car.id)} className="w-5 h-5 rounded-full bg-base-500/60 flex items-center justify-center text-base-300 hover:text-red-400 hover:bg-red-400/10 transition-colors shrink-0"><i className="fa-solid fa-xmark text-[9px]"/></button></div>)}
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                {list.length>=2&&<button onClick={onOpen} className="px-5 py-2.5 rounded-xl bg-accent text-base-950 text-sm font-bold uppercase tracking-wider hover:bg-accent-light transition-colors shadow-lg shadow-accent/20">Compare</button>}
+                <button onClick={onClear} className="px-3 py-2.5 rounded-xl bg-base-600 text-base-300 text-sm font-medium hover:text-base-50 hover:bg-base-500 transition-colors border border-base-500">Clear</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    /* ===== MAIN APP ===== */
+    function App(){
+      const[step,setStep]=useState(0);
+      const[dir,setDir]=useState(1);
+      const[exiting,setExiting]=useState(false);
+      const[sel,setSel]=useState({manufacturer:null,bodyType:null,fuelType:null});
+      const[hoverMfr,setHoverMfr]=useState(null);
+      const[detailCar,setDetailCar]=useState(null);
+      const[compList,setCompList]=useState([]);
+      const[showComp,setShowComp]=useState(false);
+      const[colors,setColors]=useState({});
+      const[toasts,setToasts]=useState([]);
+
+      const addToast=useCallback((msg,type='info')=>{const id=Date.now()+Math.random();setToasts(p=>[...p,{id,message:msg,type}]);setTimeout(()=>setToasts(p=>p.filter(t=>t.id!==id)),3000);},[]);
+
+      const pick=useCallback((key,val)=>{setSel(p=>{const keys=['manufacturer','bodyType','fuelType'];const idx=keys.indexOf(key);const u={...p,[key]:val};for(let i=idx+1;i<keys.length;i++)u[keys[i]]=null;return u;});},[]);
+
+      const goStep=useCallback((s)=>{if(exiting||s===step||s<0||s>3)return;setDir(s>step?1:-1);setExiting(true);setTimeout(()=>{setStep(s);setExiting(false);},300);},[step,exiting]);
+
+      const canContinue=step===0?!!sel.manufacturer:step===1?!!sel.bodyType:step===2?!!sel.fuelType:false;
+      const contLabel=step===0&&sel.manufacturer?'Explore '+sel.manufacturer:step===1&&sel.bodyType?'Show '+sel.bodyType+'s':step===2&&sel.fuelType?'Show Results':'Continue';
+
+      const filteredCars=useMemo(()=>CARS.filter(c=>(!sel.manufacturer||c.manufacturer===sel.manufacturer)&&(!sel.bodyType||c.bodyType===sel.bodyType)&&(!sel.fuelType||c.fuelType===sel.fuelType)),[sel]);
+
+      const getColor=useCallback(id=>colors[id]||CARS.find(c=>c.id===id)?.defaultColor||'#c8956c',[colors]);
+      const inComp=useCallback(id=>compList.includes(id),[compList]);
+
+      const toggleComp=useCallback(id=>{setCompList(p=>{if(p.includes(id)){addToast('Removed from comparison','info');return p.filter(x=>x!==id);}if(p.length>=3){addToast('Maximum 3 vehicles for comparison','error');return p;}const c=CARS.find(x=>x.id===id);addToast((c?.name||'Vehicle')+' added to compare','success');return[...p,id];});},[addToast]);
+
+      const removeComp=useCallback(id=>{toggleComp(id);if(compList.length<=3&&showComp)setShowComp(false);},[toggleComp,compList.length,showComp]);
+
+      const asmBody=sel.bodyType||'Sedan';
+      const asmColor=hoverMfr?(MFR[hoverMfr]?.color||'#c8956c'):'#c8956c';
+
+      useEffect(()=>{document.body.style.overflow=(detailCar||showComp)?'hidden':'';return()=>{document.body.style.overflow='';};},[detailCar,showComp]);
+
+      const stepLabels=['Brand','Style','Power','Results'];
+
+      function renderStep(){
+        const ac=exiting?(dir>0?'exit-left':'exit-right'):(dir>0?'enter-right':'enter-left');
+
+        if(step===0){
+          return(
+            <div key={'s0-'+(sel.manufacturer||'x')} className={ac}>
+              <div className="text-center mb-10">
+                <h1 className="hero-in font-display text-4xl sm:text-5xl lg:text-6xl font-black text-base-50 tracking-tight leading-tight" style={{animationDelay:'.1s'}}>Choose Your Brand</h1>
+                <p className="hero-in text-base-200 text-lg mt-3 max-w-lg mx-auto" style={{animationDelay:'.25s'}}>Select a manufacturer to begin building your perfect drive.</p>
+              </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                {MFRS.map((m,i)=><SelCard key={m} label={m} sub={MFR[m].tag} icon={MFR[m].icon} iconColor={MFR[m].color} selected={sel.manufacturer===m} index={i} onSelect={()=>pick('manufacturer',m)} onMouseEnter={()=>setHoverMfr(m)} onMouseLeave={()=>setHoverMfr(null)}/>)}
+              </div>
+            </div>
+          );
+        }
+
+        if(step===1){
+          return(
+            <div key={'s1-'+(sel.bodyType||'x')} className={ac}>
+              <div className="text-center mb-10">
+                <h1 className="hero-in font-display text-4xl sm:text-5xl lg:text-6xl font-black text-base-50 tracking-tight leading-tight" style={{animationDelay:'.1s'}}>Select Body Style</h1>
+                <p className="hero-in text-base-200 text-lg mt-3 max-w-lg mx-auto" style={{animationDelay:'.25s'}}>What type of vehicle suits your lifestyle?</p>
+              </div>
+              <div className="grid sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
+                {BODIES.map((b,i)=><SelCard key={b} label={b} sub={BDM[b].desc} icon={BDM[b].icon} selected={sel.bodyType===b} index={i} onSelect={()=>pick('bodyType',b)}><div className="mt-4 w-full h-16 opacity-40"><CarSil type={b.toLowerCase()} color={sel.bodyType===b?'#c8956c':'#5a5650'} className="w-full h-full"/></div></SelCard>)}
+              </div>
+            </div>
+          );
+        }
+
+        if(step===2){
+          return(
+            <div key={'s2-'+(sel.fuelType||'x')} className={ac}>
+              <div className="text-center mb-10">
+                <h1 className="hero-in font-display text-4xl sm:text-5xl lg:text-6xl font-black text-base-50 tracking-tight leading-tight" style={{animationDelay:'.1s'}}>Pick Your Powertrain</h1>
+                <p className="hero-in text-base-200 text-lg mt-3 max-w-lg mx-auto" style={{animationDelay:'.25s'}}>Choose your source of power.</p>
+              </div>
+              <div className="grid sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
+                {FUELS.map((f,i)=><SelCard key={f} label={f} sub={FLM[f].desc} icon={FLM[f].icon} iconColor={FLM[f].color} selected={sel.fuelType===f} index={i} onSelect={()=>pick('fuelType',f)}/>)}
+              </div>
+            </div>
+          );
+        }
+
+        /* Step 3 — Results */
+        if(filteredCars.length===0){
+          return(
+            <div key="s3-empty" className={ac}>
+              <div className="text-center py-20">
+                <div className="w-20 h-20 rounded-full bg-base-700 flex items-center justify-center mx-auto mb-6"><i className="fa-solid fa-car-burst text-3xl text-base-400"/></div>
+                <h2 className="text-2xl font-bold text-base-200 mb-2">No vehicles found</h2>
+                <p className="text-base-400 mb-6">Try going back and adjusting your selections.</p>
+                <button onClick={()=>goStep(0)} className="px-6 py-3 rounded-xl bg-accent text-base-950 font-bold uppercase tracking-wider hover:bg-accent-light transition-colors">Start Over</button>
+              </div>
+            </div>
+          );
+        }
+
+        return(
+          <div key={'s3-'+filteredCars.length} className={ac}>
+            <div className="text-center mb-8">
+              <h1 className="hero-in font-display text-3xl sm:text-4xl lg:text-5xl font-black text-base-50 tracking-tight leading-tight" style={{animationDelay:'.1s'}}>Your Perfect Matches</h1>
+              <p className="hero-in text-base-200 text-lg mt-3" style={{animationDelay:'.25s'}}><AnimNum target={filteredCars.length}/> vehicle{filteredCars.length!==1?'s':''} found{sel.manufacturer&&<span> in <span className="text-accent font-semibold">{sel.manufacturer}</span></span>}{sel.bodyType&&<span> · <span className="text-accent font-semibold">{sel.bodyType}</span></span>}{sel.fuelType&&<span> · <span className="text-accent font-semibold">{sel.fuelType}</span></span>}</p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+              {filteredCars.map((car,i)=>{
+                const col=getColor(car.id);
+                const ic=inComp(car.id);
+                return(
+                  <article key={car.id} className="card-up group cursor-pointer rounded-2xl border border-base-500/50 bg-base-800/50 overflow-hidden hover:border-accent/30 hover:bg-base-700/60 transition-all duration-500 hover:shadow-xl hover:shadow-black/40 hover:-translate-y-1" style={{animationDelay:(i*.08)+'s'}}>
+                    <div className="relative p-6 pb-2 bg-gradient-to-b from-base-700/30 to-transparent" onClick={()=>setDetailCar(car)}>
+                      <div className="absolute top-3 right-3"><span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-base-500/60 text-base-200 backdrop-blur-sm border border-base-400/30">{car.fuelType}</span></div>
+                      <CarSil type={car.bodyType} color={col} className="w-full h-auto transition-transform duration-700 group-hover:scale-[1.03]"/>
+                    </div>
+                    <div className="p-5 pt-3">
+                      <p className="text-xs font-semibold text-accent uppercase tracking-wider mb-1">{car.manufacturer}</p>
+                      <h3 className="text-lg font-bold text-base-50 mb-3 leading-tight group-hover:text-accent-light transition-colors">{car.name}</h3>
+                      <div className="grid grid-cols-3 gap-2 mb-4">
+                        <div className="text-center p-2 rounded-lg bg-base-800/60"><p className="text-base font-bold text-base-50">{fmtN(car.specs.zeroToHundred)}s</p><p className="text-[10px] text-base-300 uppercase tracking-wide">0-100</p></div>
+                        <div className="text-center p-2 rounded-lg bg-base-800/60"><p className="text-base font-bold text-base-50">{car.specs.horsepower}</p><p className="text-[10px] text-base-300 uppercase tracking-wide">HP</p></div>
+                        <div className="text-center p-2 rounded-lg bg-base-800/60"><p className="text-base font-bold text-base-50">{car.specs.topSpeed}</p><p className="text-[10px] text-base-300 uppercase tracking-wide">km/h</p></div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <p className="text-xl font-bold text-base-50">{fmtP(car.price)}</p>
+                        <button onClick={e=>{e.stopPropagation();toggleComp(car.id);}} className={'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-300 border '+(ic?'bg-accent/15 text-accent border-accent/40':'bg-base-600 text-base-300 border-base-500 hover:border-accent/40 hover:text-base-100')}><i className={'fa-solid '+(ic?'fa-check':'fa-plus')+' text-[10px]'}></i>{ic?'Added':'Compare'}</button>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        );
+      }
+
+      return(
+        <div className="min-h-screen ambient-bg grid-dots">
+          {/* Header */}
+          <header className="fixed top-0 w-full z-50 bg-base-950/80 backdrop-blur-lg border-b border-base-500/40">
+            <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+              <a href="#" className="font-display text-xl font-bold tracking-wide text-base-50 hover:text-accent transition-colors" onClick={e=>{e.preventDefault();}}>Auto<span className="text-accent">Vista</span></a>
+              <button onClick={()=>{if(compList.length>=2)setShowComp(true);else addToast('Select at least 2 vehicles to compare','error');}} className="relative flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-base-700 hover:bg-base-600 text-base-100 hover:text-base-50 border border-base-500 hover:border-accent/40">
+                <i className="fa-solid fa-scale-balanced text-accent text-xs"></i>Compare
+                {compList.length>0&&<span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-accent text-base-950 text-xs font-bold flex items-center justify-center">{compList.length}</span>}
+              </button>
+            </div>
+          </header>
+
+          {/* Main content area */}
+          <main className="pt-14 min-h-screen flex flex-col">
+            {/* Assembly + Step content row */}
+            <div className="flex-1 flex flex-col lg:flex-row gap-8 lg:gap-12 px-6 py-10 lg:py-16 max-w-7xl mx-auto w-full">
+              {/* Left — Assembly visual */}
+              <div className="lg:w-5/12 flex flex-col items-center justify-center">
+                <CarAssembly bodyType={asmBody} step={step} hoverColor={asmColor}/>
+                {/* Summary under car */}
+                <div className="mt-6 text-center space-y-1.5">
+                  {sel.manufacturer&&<p className="text-sm font-semibold text-accent">{sel.manufacturer}</p>}
+                  {sel.bodyType&&<p className="text-xs text-base-300">{sel.bodyType}</p>}
+                  {sel.fuelType&&<p className="text-xs text-base-400">{sel.fuelType}</p>}
+                  {!sel.manufacturer&&!sel.bodyType&&!sel.fuelType&&<p className="text-xs text-base-400">Your build will appear here</p>}
+                </div>
+              </div>
+
+              {/* Right — Step content */}
+              <div className="lg:w-7/12 flex flex-col justify-center min-h-0 overflow-y-auto modal-scroll">
+                {renderStep()}
+              </div>
+            </div>
+
+            {/* Bottom navigation bar */}
+            <div className="sticky bottom-0 bg-base-950/90 backdrop-blur-xl border-t border-base-500/40 py-5 px-6">
+              <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+                <button onClick={()=>goStep(step-1)} disabled={step===0}
+                  className={'flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all '+(step===0?'opacity-0 pointer-events-none':'bg-base-700 text-base-200 border border-base-500 hover:border-base-300 hover:text-base-50')}>
+                  <i className="fa-solid fa-arrow-left text-xs"/>Back
+                </button>
+                <Progress current={step} labels={stepLabels} onJump={goStep}/>
+                {step<3?(
+                  <button onClick={()=>goStep(step+1)} disabled={!canContinue}
+                    className={'flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold uppercase tracking-wider transition-all '+(canContinue?'bg-accent text-base-950 hover:bg-accent-light btn-glow':'bg-base-700 text-base-400 border border-base-500 cursor-not-allowed opacity-50')}>
+                    {contLabel}<i className="fa-solid fa-arrow-right text-xs"/>
+                  </button>
+                ):(
+                  <button onClick={()=>goStep(0)} className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold uppercase tracking-wider bg-base-700 text-base-200 border border-base-500 hover:border-accent/40 hover:text-base-50 transition-all">
+                    <i className="fa-solid fa-rotate-left text-xs"/>Start Over
+                  </button>
+                )}
+              </div>
+            </div>
+          </main>
+
+          {/* Detail Modal */}
+          {detailCar&&<DetailModal car={detailCar} color={getColor(detailCar.id)} onColor={(id,c)=>setColors(p=>({...p,[id]:c}))} onClose={()=>setDetailCar(null)} inComp={inComp(detailCar.id)} onToggle={toggleComp}/>}
+
+          {/* Compare Modal */}
+          {showComp&&<CompareModal list={compList} colors={colors} onRemove={removeComp} onClose={()=>setShowComp(false)}/>}
+
+          {/* Compare Bar */}
+          <CompareBar list={compList} onRemove={removeComp} onOpen={()=>setShowComp(true)} onClear={()=>{setCompList([]);addToast('Comparison cleared','info');}}/>
+
+          {/* Toasts */}
+          <Toasts items={toasts}/>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>
