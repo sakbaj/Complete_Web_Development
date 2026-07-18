@@ -22,5 +22,7 @@
 
 let a = ['html', 'css', 'javascript'];
 
+a.unshift("Java");
+a.unshift("Spring Boot");
+a.unshift("Kotlin");
 console.log(a);
-
