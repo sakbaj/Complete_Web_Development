@@ -11,9 +11,17 @@
 
 // High Order functions:
 
-function add(x, y, cb) {
-    let result = x + y;
-    cb(result);
-}
+// function add(x, y, cb) {
+//     let result = x + y;
+//     cb(result);
+// }
 
-add(23, 10, value => console.log(value));
+// add(23, 10, value => console.log(value));
+
+// Arrays 
+
+let lang = ['html', 'css', 'javascript', 'java'];
+
+let first = lang[0];
+console.log(f);
+
