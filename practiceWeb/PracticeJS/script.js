@@ -20,8 +20,7 @@
 
 // Arrays 
 
-let lang = ['html', 'css', 'javascript', 'java'];
+let a = ['html', 'css', 'javascript'];
 
-let first = lang[0];
-console.log(f);
+console.log(a);
 
