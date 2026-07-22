@@ -1,9 +1,3 @@
 // Arrays In JavaScript
 
-const student = ['Piyush', 'John', 'Saksham', 'Bill'];
-
-student.reverse();
-
-student[0] = 'Manoj';
-
-console.log(student);
+const myArr = [0, 1, 2, 3, 4, 5, true, 'Saksham']
