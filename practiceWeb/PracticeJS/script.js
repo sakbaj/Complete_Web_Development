@@ -33,8 +33,11 @@
 
 // Methods in Arrays Using JavaScript
 
-const stuRoll = [220, 221, 222, 223, 224];
+// const stuRoll = [220, 221, 222, 223, 224];
 
-console.log('A '+stuRoll);
-const newArray = stuRoll.splice(2, 4);
-console.log('B '+newArray);
+// console.log('A '+stuRoll);
+// const newArray = stuRoll.splice(2, 4);
+// console.log('B '+newArray);
+
+
+
