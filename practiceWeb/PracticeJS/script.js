@@ -39,6 +39,7 @@
 // const newArray = stuRoll.splice(2, 4);
 // console.log('B '+newArray);
 
-console.log(Array.isArray(true));
+// console.log(Array.isArray(true));
 
-
+let student = [23, 24, 25, 26];
+console.log(student);
