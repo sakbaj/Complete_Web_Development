@@ -39,5 +39,6 @@
 // const newArray = stuRoll.splice(2, 4);
 // console.log('B '+newArray);
 
+console.log(Array.isArray(true));
 
 
