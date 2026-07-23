@@ -63,4 +63,8 @@
 
 // shift and unshift
 
-let
+const fruits = ["Watermelon", "Apple", "Banana", "Grapes", "Pomegranate"];
+
+fruits.shift();
+
+console.log(fruits);
