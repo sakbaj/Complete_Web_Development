@@ -2,11 +2,11 @@
 
 const marvelHeros = ["thor", "Ironman", "Spiderman"];
 
-const dcHer = ["superman", "flash", "batman"];
+const dcHeros = ["superman", "flash", "batman"];
 
-marvelHeros.push(dc);
+marvelHeros.push(dcHeros);
 // console.log(marvelHeros);
 // console.log(marvelHeros[3][1]);
 
-marvelHeros.concat(dc);
-console.log(marvelHeros)
+const allHeros = marvelHeros.concat(dcHeros);
+console.log(allHeros);
