@@ -12,4 +12,6 @@ const dcHeros = ["superman", "flash", "batman"];
 // console.log(allHeros);
 
 const allHeros = [...marvelHeros, ...dcHeros]; // Spread Operator
-console.log(allHeros);
+// console.log(allHeros);
+
+const anotherArray = [1, 2, 3, [4, 5, 6], 7, [6, 7], [4, 5]]
