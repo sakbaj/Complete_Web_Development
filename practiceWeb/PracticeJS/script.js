@@ -20,13 +20,17 @@
 
 // Arrays 
 
-let a = ['HTML', 'CSS', 'Javascript', 'Java'];
-console.log("Original Array: "+a);
+// let a = ['HTML', 'CSS', 'Javascript', 'Java'];
+// console.log("Original Array: "+a);
 
 // a.pop(); // It removes the element of the last index of the array.
 
 // a.shift(); // It removes the element of the first index of the array.
 
-a.splice(2, 3); // It removes or replaces the element of the array.
+// a.splice(2, 3); // It removes or replaces the element of the array.
 
-console.log("Updated Array: "+a);
+// console.log("Updated Array: "+a);
+
+// Methods in Arrays Using JavaScript
+
+const 
