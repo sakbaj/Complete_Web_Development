@@ -21,4 +21,5 @@ console.log(realAnotherArray);
 
 
 console.log(Array.isArray("Saksham"));
-console.log(Array.i("Saksham"));
+console.log(Array.from("Saksham"));
+console.log(Array.from({name: "Saksham"}));
