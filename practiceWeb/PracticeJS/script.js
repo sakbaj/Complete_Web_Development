@@ -55,8 +55,12 @@
 // console.log(delete emp.lastName);
 // console.log(emp);
 
-let a = 23;
-let b = 45;
-let c = 34;
+// let a = 23;
+// let b = 45;
+// let c = 34;
 
-console.log(Array.of(a, b, c));
+// console.log(Array.of(a, b, c));
+
+// shift and unshift
+
+let
