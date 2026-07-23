@@ -41,5 +41,6 @@
 
 // console.log(Array.isArray(true));
 
-let student = [23, 24, 25, 26];
-console.log(student);
+let a  = ["HTML", "CSS", "JS", "React"];
+let s = a.toString(); // used to convert array into string
+console.log(s);
