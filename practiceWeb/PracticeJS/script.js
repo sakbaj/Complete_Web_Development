@@ -69,4 +69,8 @@
 // console.log(condi_Salary);
 
 // Map function in Arrays
-const 
+
+const prices = [100, 200, 300];
+
+prices[0] = 226;
+console.log(prices);
