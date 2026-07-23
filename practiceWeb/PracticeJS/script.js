@@ -63,7 +63,10 @@
 
 // shift and unshift
 
-const salaries = [20000, 30000, 40000, 50000, 60000];
+// const salaries = [20000, 30000, 40000, 50000, 60000];
 
-let condi_Salary = salaries.filter(salary => salary>30000);
-console.log(condi_Salary);
+// let condi_Salary = salaries.filter(salary => salary>30000);
+// console.log(condi_Salary);
+
+// Map function in Arrays
+const 
