@@ -46,8 +46,8 @@
 // console.log(s);
 
 let emp = {
-    firstName: "Saksham",
-    iD = 653,
+    name: "Saksham Bajpai",
+    iD: 653,
     lastName: "Bajpai",
     salary: "20 LPA"
 }
