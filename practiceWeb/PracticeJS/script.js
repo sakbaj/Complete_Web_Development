@@ -70,6 +70,7 @@
 
 // Map function in Arrays
 
-const prices = [100, 200, 300];
+const price = [100, 200, 300];
 
-const 
+const updated_prices = price.map(price => price + 3);
+console.log(updated_prices);
