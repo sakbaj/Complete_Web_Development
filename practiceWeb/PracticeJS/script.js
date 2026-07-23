@@ -41,6 +41,16 @@
 
 // console.log(Array.isArray(true));
 
-let a  = ["HTML", "CSS", "JS", "React"];
-let s = a.toString(); // used to convert array into string
-console.log(s);
+// let a  = ["HTML", "CSS", "JS", "React"];
+// let s = a.toString(); // used to convert array into string
+// console.log(s);
+
+let emp = {
+    firstName: "Saksham",
+    iD = 653,
+    lastName: "Bajpai",
+    salary: "20 LPA"
+}
+
+console.log(delete emp.lastName);
+console.log(emp);
