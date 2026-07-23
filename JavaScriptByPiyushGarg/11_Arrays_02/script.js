@@ -14,4 +14,11 @@ const dcHeros = ["superman", "flash", "batman"];
 const allHeros = [...marvelHeros, ...dcHeros]; // Spread Operator
 // console.log(allHeros);
 
-const anotherArray = [1, 2, 3, [4, 5, 6], 7, [6, 7], [4, 5]]
+const anotherArray = [1, 2, 3, [4, 5, 6], 7, [6, 7, [4, 5]]];
+
+const realAnotherArray = anotherArray.flat(Infinity);
+console.log(realAnotherArray);
+
+
+console.log(Array.isArray("Saksham"));
+console.log(Array.i("Saksham"));
