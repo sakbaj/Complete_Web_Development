@@ -11,4 +11,5 @@ const dcHeros = ["superman", "flash", "batman"];
 // const allHeros = marvelHeros.concat(dcHeros);
 // console.log(allHeros);
 
-const allHeros
+const allHeros = [...marvelHeros, ...dcHeros]; // Spread Operator
+console.log(allHeros);
