@@ -45,12 +45,18 @@
 // let s = a.toString(); // used to convert array into string
 // console.log(s);
 
-let emp = {
-    name: "Saksham Bajpai",
-    iD: 653,
-    lastName: "Bajpai",
-    salary: "20 LPA"
-}
+// let emp = {
+//     name: "Saksham Bajpai",
+//     iD: 653,
+//     lastName: "Bajpai",
+//     salary: "20 LPA"
+// }
 
-console.log(delete emp.lastName);
-console.log(emp);
+// console.log(delete emp.lastName);
+// console.log(emp);
+
+let a = 23;
+let b = 45;
+let c = 34;
+
+console.log(Array.of(a, b, c));
