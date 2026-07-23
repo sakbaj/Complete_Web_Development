@@ -63,6 +63,7 @@
 
 // shift and unshift
 
-const salary = [20000, 30000, 40000, 50000, 60000];
+const salaries = [20000, 30000, 40000, 50000, 60000];
 
-let condi_Salary = salary.map()
+let condi_Salary = salaries.map(salary => salary>30000);
+console.log(condi_Salary);
