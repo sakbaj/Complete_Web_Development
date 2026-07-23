@@ -35,6 +35,6 @@
 
 const studentRoll = [220, 221, 222, 223, 224, 225, 226];
 
-studentRoll.shift
+studentRoll.shift();
 console.log(studentRoll);
 
