@@ -63,8 +63,6 @@
 
 // shift and unshift
 
-const fruits = ["Watermelon", "Apple", "Banana", "Grapes", "Pomegranate"];
+const salary = [20000, 30000, 40000, 50000, 60000];
 
-fruits.shift();
-
-console.log(fruits);
+let condi_Salary = salary.map()
