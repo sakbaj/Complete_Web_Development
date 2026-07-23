@@ -33,8 +33,8 @@
 
 // Methods in Arrays Using JavaScript
 
-const studentRoll = [220, 221, 222, 223, 224, 225, 226];
+const stuRoll = [220, 221, 222, 223, 224, 225, 226];
 
-studentRoll.shift();
-console.log(studentRoll);
-
+console.log('A '+stuRoll);
+const newArray = stuRoll.slice(2, 4);
+console.log('B '+newArray);
