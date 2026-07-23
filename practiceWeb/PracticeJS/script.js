@@ -36,5 +36,5 @@
 const stuRoll = [220, 221, 222, 223, 224];
 
 console.log('A '+stuRoll);
-const newArray = stuRoll.slice(1, 2);
+const newArray = stuRoll.splice(2, 4);
 console.log('B '+newArray);
