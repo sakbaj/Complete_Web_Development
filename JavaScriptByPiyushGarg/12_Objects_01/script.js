@@ -4,7 +4,7 @@
 
 const jsUser = {
     name: "Saksham",
-    "fullName": "Saksham Bajpai",
+    "full name": "Saksham Bajpai",
     age: 18,
     location: "Lucknow",
     email: "saksham@gmail.com",
@@ -14,5 +14,5 @@ const jsUser = {
 
 // console.log(jsUser.email);
 
-console.log(jsUser["fullName"]);
-console.log(jsUser.fullName);
+// console.log(jsUser["fullName"]);
+console.log(jsUser.full name);
