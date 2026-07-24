@@ -1,1 +1,1 @@
-console.log(56);
+// singleton
