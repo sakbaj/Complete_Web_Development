@@ -7,7 +7,7 @@ const mySym = Symbol("key1")
 const jsUser = {
     name: "Saksham",
     "full name": "Saksham Bajpai",
-    [mySym]: "mykey1",
+    mySym: "mykey1",
     age: 18,
     location: "Lucknow",
     email: "saksham@gmail.com",
@@ -17,10 +17,16 @@ const jsUser = {
 
 // console.log(jsUser.email);
 // console.log(jsUser["email"]);
-console.log(jsUser["full name"]);
-console.log(jsUser[mySym]);
+// console.log(jsUser["full name"]);
+// console.log(jsUser[mySym]);
 
 jsUser.email = "sakbaj@gmail.com";
 Object.freeze(jsUser);
 jsUser.email = "dhc@gmail.com"
 console.log(jsUser);
+
+jsUser.greeting = function () {
+    console.log("Hello Js user");
+}
+console.log(jsUser.greeting);
+
