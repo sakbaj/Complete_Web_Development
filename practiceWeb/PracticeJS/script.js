@@ -10,4 +10,6 @@ const student = {
 }
 
 console.log(student.email);
+console.log();
+
 console.log(student["email"]);
