@@ -84,7 +84,7 @@
 // console.log(res);
 // console.log(rollNo);
 
-let fruits = ["Apple", "Banana", "Mango", "Orange"];
+let fruits = [];
 
 fruits.splice(1, 2);
 
