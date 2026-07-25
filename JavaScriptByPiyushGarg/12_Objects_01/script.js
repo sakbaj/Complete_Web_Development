@@ -23,7 +23,7 @@ const jsUser = {
 jsUser.email = "sakbaj@gmail.com";
 Object.freeze(jsUser);
 jsUser.email = "dhc@gmail.com"
-console.log(jsUser);
+// console.log(jsUser);
 
 jsUser.greeting = function () {
     console.log("Hello Js user");
