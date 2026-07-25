@@ -77,9 +77,15 @@
 
 // slice and splice
 
-const rollNo = [1, 2, 3, 4, 5, 6, 7, 8];
+// const rollNo = [1, 2, 3, 4, 5, 6, 7, 8];
 
+// // const res = rollNo.slice(2, 4);
 // const res = rollNo.slice(2, 4);
-const res = rollNo.slice(2, 4);
-console.log(res);
-console.log(rollNo);
+// console.log(res);
+// console.log(rollNo);
+
+let fruits = ["Apple", "Banana", "Mango", "Orange"];
+
+fruits.splice(1, 2);
+
+console.log(fruits);
