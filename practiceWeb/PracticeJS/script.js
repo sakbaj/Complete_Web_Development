@@ -72,5 +72,5 @@
 
 const price = [100, 200, 300];
 
-const updated_prices = price.map(price => price + 3);
-console.log(updated_prices);
+price.shift();
+console.log(price);
