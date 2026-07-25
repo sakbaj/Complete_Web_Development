@@ -2,7 +2,7 @@
 // Objects
 
 const student = {
-    name: "Saksham",
+    name: "Saksham Bajpai",
     rollno: 226,
     email: 'sakshambajpaihdi@gmail.com',
     Course: 'BCA',
@@ -10,6 +10,7 @@ const student = {
 }
 
 console.log(student.email);
-console.log();
 
-console.log(student["email"]);
+// console.log(student["email"]);
+
+// console.log(student.rollno);
