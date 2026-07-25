@@ -70,7 +70,11 @@
 
 // Map function in Arrays
 
-const price = [100, 200, 300];
+// const price = [100, 200, 300];
 
-price.shift();
-console.log(price);
+// price.shift();
+// console.log(price);
+
+// slice and splice
+
+const rollNo = [2, 3, 4, 5, 6, 7, 8];
