@@ -1,6 +1,1 @@
 print("Hello Saksham Bajpai")
-print("Hello World")
-print("Hello World2")
-print("Hello World")
-print("Hello World")
-print("Hello World")
