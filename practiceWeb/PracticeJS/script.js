@@ -22,7 +22,7 @@
 // }
 // console.log(stu);
 
-let x = 34;
-let y = 34;
+let x = 45;
+let y = "35";
 console.log(x==y); // It will perform comparison between these two.
-console.log(x===y);
+// console.log(x===y);
