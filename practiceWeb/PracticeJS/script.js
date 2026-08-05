@@ -1,13 +1,13 @@
 // Practices In JavaScript
 // Objects
 
-const student = {
-    name: "Saksham Bajpai",
-    rollno: 226,
-    email: 'sakshambajpaihdi@gmail.com',
-    Course: 'BCA',
-    section: 'D'
-}
+// const student = {
+//     name: "Saksham Bajpai",
+//     rollno: 226,
+//     email: 'sakshambajpaihdi@gmail.com',
+//     Course: 'BCA',
+//     section: 'D'
+// }
 
 // console.log(student.email);
 
@@ -15,10 +15,14 @@ const student = {
 
 // console.log(student.rollno);
 
-const keyName = "email";
+// const keyName = "email";
 
-const stu = {
-    [keyName]: "sakshambajpaihdi@gmail.com"
-}
-console.log(stu);
+// const stu = {
+//     [keyName]: "sakshambajpaihdi@gmail.com"
+// }
+// console.log(stu);
 
+let x = 34;
+let y = 34;
+console.log(x==y); // It will perform comparison between these two.
+console.log(x===y);
