@@ -28,8 +28,9 @@
 // console.log(x===y);
 
 // Arrays
-let fruits = ["Apple", "Banana", "Cabbage", "Radish"];
+let fruits = ["Apple", "Banana", "Cabbage", "Radish", "Aloo"];
 
+let mix = fruits.slice(2, 4); // starting: included, end: excluded
 
-
+console.log(mix);
 console.log(fruits);
