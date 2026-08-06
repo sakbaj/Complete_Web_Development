@@ -28,4 +28,6 @@
 // console.log(x===y);
 
 // Arrays
-let fruits = ["Apple", "Banana", "Cabbage", "Radis"]
+let fruits = ["Apple", "Banana", "Cabbage", "Radish"];
+
+fruits.push()
