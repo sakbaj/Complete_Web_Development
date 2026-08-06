@@ -30,4 +30,6 @@
 // Arrays
 let fruits = ["Apple", "Banana", "Cabbage", "Radish"];
 
-console.log(fruits.indexOf("Banana"));
+
+
+console.log(fruits);
