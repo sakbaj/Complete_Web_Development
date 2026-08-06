@@ -35,8 +35,15 @@
 // console.log(mix);
 // console.log(fruits);
 
-let a = ["HTML", "CSS", "JS"];
+// let a = ["HTML", "CSS", "JS"];
 
-for (let i=0; i<a.length; i++) {
-    console.log(a[i]);
-}
+// for (let i=0; i<a.length; i++) {
+//     console.log(a[i]);
+// }
+
+let a = [10, 20, 30, 40, 50];
+
+let another = a.splice(3, 2);
+console.log(another);
+
+// Output: 10, 20, 30
