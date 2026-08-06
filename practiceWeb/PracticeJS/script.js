@@ -30,4 +30,5 @@
 // Arrays
 let fruits = ["Apple", "Banana", "Cabbage", "Radish"];
 
-fruits.push()
+fruits.pop("Tomato");
+console.log(fruits);
