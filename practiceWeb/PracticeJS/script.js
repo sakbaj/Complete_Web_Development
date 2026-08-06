@@ -27,10 +27,16 @@
 // console.log(x==y); // It will perform comparison between these two.
 // console.log(x===y);
 
-// Arrays
-let fruits = ["Apple", "Banana", "Cabbage", "Radish", "Aloo"];
+// // Arrays
+// let fruits = ["Apple", "Banana", "Cabbage", "Radish", "Aloo"];
 
-let mix = fruits.slice(2, 4); // starting: included, end: excluded
+// let mix = fruits.slice(2, 4); // starting: included, end: excluded
 
-console.log(mix);
-console.log(fruits);
+// console.log(mix);
+// console.log(fruits);
+
+let a = ["HTML", "CSS", "JS"];
+
+for (let i=0; i<a.length; i++) {
+    console.log(a[i]);
+}
