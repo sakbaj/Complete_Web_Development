@@ -48,11 +48,11 @@ a.splice(3, 2, 12, 24, 29);
 
 // Output: 10, 20, 30, 12, 24, 29
 
-let boys = ["Rahul", "Mukesh"];
-let girls = ["Priya", "Pooja"];
+// let girls = ["Priya", "Pooja"]; // Array 2
+// let merge = boys.concat(girls); // It merges two arrays, then creates a single array of combining both.
 
-let combined = boys.concat(girls); // It 
 
-console.log(combined);
+let boys = ["Rahul", "Mukesh", "Ayush", "Saksham"]; 
+console.log(boys.join());
 
-// Expected Output: 12, 20, 30, 48, 60...
+// Expected Output: 
