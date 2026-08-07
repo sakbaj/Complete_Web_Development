@@ -44,6 +44,12 @@
 let a = [10, 20, 30, 40, 50];
 
 a.splice(3, 2, 12, 24, 29);
-console.log(a);
+// console.log(a);
 
 // Output: 10, 20, 30, 12, 24, 29
+
+let x = [12, 24, 36, 48, 60];
+
+x
+
+console.log(x);
