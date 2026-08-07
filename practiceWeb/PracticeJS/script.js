@@ -65,7 +65,7 @@ const mySym = Symbol("key1");
 const user = {
     name: "Saksham",
     "full name": "Saksham Bajpai",
-    // [mySym]: "myKey1",
+    mySym: "myKey1",
     age: 20,
     location: "Jaipur",
     email: "saksh@gmail.com",
@@ -73,4 +73,4 @@ const user = {
     lastLoginDays: ["Monday", "Saturday"]
 }
 
-console.log(user[mySym]);
+console.log(user.mySym);
