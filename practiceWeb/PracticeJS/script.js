@@ -43,7 +43,7 @@
 
 let a = [10, 20, 30, 40, 50];
 
-let another = a.splice(3, 2);
-console.log(another);
+a.splice(3, 2, 12, 24, 29);
+console.log(a);
 
-// Output: 10, 20, 30
+// Output: 10, 20, 30, 12, 24, 29
