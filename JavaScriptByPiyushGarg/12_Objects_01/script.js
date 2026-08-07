@@ -43,7 +43,7 @@ const mySym = Symbol("key1")
 const JsUser = {
     name: "Saksham",
     "full name": "Saksham Bajpai",
-    // [mySym]: "myKey1",
+    [mySym]: "myKey1",
     age: 20,
     location: "Jaipur",
     email: "saksh@gmail.com",
@@ -53,4 +53,4 @@ const JsUser = {
 
 // console.log(JsUser["full name"]);
 // console.log(JsUser["email"]);
-console.log(JsUser.mySym);
+console.log(JsUser[mySym]);
