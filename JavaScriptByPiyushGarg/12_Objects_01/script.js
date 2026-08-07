@@ -38,7 +38,7 @@
 
 // object literals
 
-const mySym = Symbol("key1")
+const mySym = Symbol("key1");
 
 const JsUser = {
     name: "Saksham",
@@ -51,6 +51,6 @@ const JsUser = {
     lastLoginDays: ["Monday", "Saturday"]
 }
 
-// console.log(JsUser["full name"]);
+console.log(JsUser["full name"]);
 // console.log(JsUser["email"]);
 console.log(JsUser[mySym]);
