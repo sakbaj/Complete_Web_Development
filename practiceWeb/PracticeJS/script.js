@@ -48,10 +48,11 @@ a.splice(3, 2, 12, 24, 29);
 
 // Output: 10, 20, 30, 12, 24, 29
 
-let x = [12, 24, 36, 48, 60, 72, 84, 96];
+let arr = [12, 24, 36, 48, 60, 72, 84, 96];
 
-let another = x.slice(2, 5);
+let new_arr = arr.slice();
 
-console.log(another);
+console.log(arr);
+console.log(new_arr);
 
 // Expected Output: 
