@@ -52,7 +52,7 @@ a.splice(3, 2, 12, 24, 29);
 // let merge = boys.concat(girls); // It merges two arrays, then creates a single array of combining both.
 
 
-let arr = ["apple", "app", "apricot", "banana", "application"]; 
+let arr = [10, 20, 25, 100, 40]; 
 console.log(arr.sort());
 
 // Expected Output: 
