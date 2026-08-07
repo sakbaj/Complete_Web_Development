@@ -73,4 +73,5 @@ const user = {
     lastLoginDays: ["Monday", "Saturday"]
 }
 
-console.log(user.mySym);
+console.log(JsUser.mySym);
+
