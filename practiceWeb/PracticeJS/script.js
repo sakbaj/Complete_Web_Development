@@ -53,6 +53,6 @@ a.splice(3, 2, 12, 24, 29);
 
 
 let arr = [10, 20, 25, 100, 40]; 
-console.log(arr.sort());
+console.log(arr.sort((a, b) => a - b));
 
 // Expected Output: 
