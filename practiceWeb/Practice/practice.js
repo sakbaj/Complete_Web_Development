@@ -1,3 +1,10 @@
-// Programs using javaScript
+// Objects in JS
 
-let 
+const obj = {
+    name: "Saksham",
+    full name: "Saksham Bajpai",
+    course: "BCA",
+    age: 21,
+    rollNo: 226,
+    section: "D"
+}
