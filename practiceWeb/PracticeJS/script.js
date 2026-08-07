@@ -74,4 +74,3 @@ const user = {
 }
 
 console.log(user[mySym]);
-
