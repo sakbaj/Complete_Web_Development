@@ -50,7 +50,7 @@ a.splice(3, 2, 12, 24, 29);
 
 let arr = [12, 24, 36, 48, 60, 72, 84, 96];
 
-let new_arr = arr.slice();
+let new_arr = arr.slice(3);
 
 console.log(arr);
 console.log(new_arr);
