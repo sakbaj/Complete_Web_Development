@@ -48,10 +48,11 @@ a.splice(3, 2, 12, 24, 29);
 
 // Output: 10, 20, 30, 12, 24, 29
 
-let arr = [12, 24, 36, 48, 60, 72, 84, 96];
+let boys = ["Rahul", "Mukesh"];
+let girls = ["Priya", "Pooja"];
 
-// console.log(arr.indexOf(96));
-arr.splice(1, 2, 20, 30);
-console.log(arr);
+let combined = boys.concat(girls); // It 
+
+console.log(combined);
 
 // Expected Output: 12, 20, 30, 48, 60...
