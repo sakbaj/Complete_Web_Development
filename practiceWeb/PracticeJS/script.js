@@ -1,6 +1,8 @@
 // Practices In JavaScript
 // Objects
 
+const { use } = require("react");
+
 // const student = {
 //     name: "Saksham Bajpai",
 //     rollno: 226,
@@ -52,7 +54,23 @@ a.splice(3, 2, 12, 24, 29);
 // let merge = boys.concat(girls); // It merges two arrays, then creates a single array of combining both.
 
 
-let arr = [10, 20, 25, 100, 40]; 
-console.log(arr.sort((a, b) => a - b));
-
+// let arr = [10, 20, 25, 100, 40]; 
+// console.log(arr.sort((a, b) => a - b));
 // Expected Output: 
+
+// Objects
+
+const mySym = Symbol("key1");
+
+const user = {
+    name: "Saksham",
+    "full name": "Saksham Bajpai",
+    // [mySym]: "myKey1",
+    age: 20,
+    location: "Jaipur",
+    email: "saksh@gmail.com",
+    isLoggedIn: false,
+    lastLoginDays: ["Monday", "Saturday"]
+}
+
+console.log(user[mySym]);
