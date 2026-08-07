@@ -53,6 +53,6 @@ a.splice(3, 2, 12, 24, 29);
 
 
 let boys = ["Rahul", "Mukesh", "Ayush", "Saksham"]; 
-console.log(boys.join());
+console.log(boys.join('  '));
 
 // Expected Output: 
