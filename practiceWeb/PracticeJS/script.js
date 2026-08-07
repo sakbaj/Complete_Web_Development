@@ -62,7 +62,7 @@ a.splice(3, 2, 12, 24, 29);
 
 const mySym = Symbol("key1");
 
-const user = {
+const stud = {
     name: "Saksham",
     "full name": "Saksham Bajpai",
     [mySym]: "myKey1",
@@ -73,4 +73,4 @@ const user = {
     lastLoginDays: ["Monday", "Saturday"]
 }
 
-console.log(user[mySym]);
+console.log(stud[mySym]);
