@@ -48,8 +48,10 @@ a.splice(3, 2, 12, 24, 29);
 
 // Output: 10, 20, 30, 12, 24, 29
 
-let x = [12, 24, 36, 48, 60];
+let x = [12, 24, 36, 48, 60, 72, 84, 96];
 
-x
+let another = x.slice(2, 5);
 
-console.log(x);
+console.log(another);
+
+// Expected Output: 
