@@ -1,7 +1,7 @@
 // Practices In JavaScript
 // Objects
 
-const { use } = require("react");
+// const { use } = require("react");
 
 // const student = {
 //     name: "Saksham Bajpai",
