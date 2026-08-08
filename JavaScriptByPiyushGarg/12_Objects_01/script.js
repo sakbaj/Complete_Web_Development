@@ -40,5 +40,15 @@
 
 const JsUser = {
     name:"Saksham",
-    
+    "full name": "Saksham Bajpai",
+    age: 21,
+    location: "Jaipur",
+    email: "saksham@gmail.com",
+    isLoggedIn: false,
+    lastLoginDays: ["Monday", "Saturday"]
 }
+
+console.log(JsUser.email);
+console.log(JsUser["email"]);
+console.log(JsUser["full name"]);
+
