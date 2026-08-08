@@ -38,4 +38,7 @@
 
 // object literals
 
-const 
+const JsUser = {
+    name:"Saksham",
+    
+}
