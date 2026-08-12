@@ -18,3 +18,7 @@
 
 // console.log(obj.course);
 
+const student = {
+    name: "Saksham",
+    age: 21;
+}
