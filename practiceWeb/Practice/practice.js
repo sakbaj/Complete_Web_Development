@@ -21,10 +21,11 @@
 const student = {
     name: "Saksham",
     age: 21,
-    address: {
-        city: "Hardoi",
-        pincode: 241001
-    }
+    id: 226
 }
 
-console.log(student.address.pincode);
+const {name, age} = student;
+
+console.log(name);
+console.log(age);
+
