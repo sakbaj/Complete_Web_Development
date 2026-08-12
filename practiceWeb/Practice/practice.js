@@ -12,7 +12,9 @@
 
 // Second Way to define Objects in jS.
 
-let obj = new Object(); // Using Constructor method...
-obj.course = "BCA";
+// Syntax: let obj_name = new Object();
+// let obj = new Object(); // Using Constructor method...
+// obj.course = "BCA";
 
-console.log(obj.course);
+// console.log(obj.course);
+
