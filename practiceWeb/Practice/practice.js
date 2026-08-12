@@ -6,5 +6,3 @@ const obj = {
     course: "BCA",
     rollNo: 226
 }
-
-console.log(obj["name"]);
