@@ -3,8 +3,8 @@
 const obj = {
     name: "Saksham",
     course: "BCA",
+    email: "saksh@gmail.com",
     rollNo: 226
 }
 
-const anotherKey = "course";
-console.log(obj.anotherKey);
+console.log(obj["email"]);
