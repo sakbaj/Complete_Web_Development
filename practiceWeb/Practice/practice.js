@@ -2,12 +2,9 @@
 
 const obj = {
     name: "Saksham",
+    "full name": "Saksham Bajpai",
     course: "BCA",
-    email: "saksham@gmail.com",
-    rollNo: 226,
-    phone: 8797258105
+    rollNo: 226
 }
 
-console.log(obj.email);
-console.log(obj[email]);
-
+console.log(obj["name"]);
