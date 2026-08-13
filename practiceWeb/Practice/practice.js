@@ -65,8 +65,21 @@ const {id: settingsID, theme} = userSetting;
 // console.log(b);
 
 // Objects(Pass by reference): in this changes will happen to both
-const obj1 = {name: "Saksham Bajpai"};
-const obj2 = obj1;
+// const obj1 = {name: "Saksham Bajpai"};
+// const obj2 = obj1;
 
-obj2.name = "Ayush Bajpai";
-console.log(obj1.name);
+// obj2.name = "Ayush Bajpai";
+// console.log(obj1.name);
+
+// Objects initialisation:
+
+const user1 = {
+    name: "Saksham",
+    age: 20,
+    rollNo: 226,
+    "full name": "Saksham Bajpai",
+    email: "sakshambajpaihdi@gmail.com"
+}
+
+console.log(user1["email"]);
+
