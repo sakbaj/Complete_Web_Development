@@ -33,8 +33,11 @@ const {id: settingsID, theme} = userSetting;
 // console.log(profileID);
 // console.log(settingsID);
 
-const originalUser = {name: "Saksham", age: 20};
-const newobj = {...originalUser};
-newobj.age = 21;
-console.log(originalUser.age);
-console.log(newobj.age);
+// const originalUser = {name: "Saksham", age: 20};
+// const copy = {...originalUser};
+// copy.age = 21;
+// console.log(originalUser.age);
+// console.log(copy.age);
+
+const basicInfo = {name: "Saksham Bajpai", age: 20};
+const locationInfo = {city:"Hardoi", state: "UttarPradesh"}
