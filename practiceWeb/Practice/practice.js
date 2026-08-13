@@ -39,5 +39,15 @@ const {id: settingsID, theme} = userSetting;
 // console.log(originalUser.age);
 // console.log(copy.age);
 
-const basicInfo = {name: "Saksham Bajpai", age: 20};
-const locationInfo = {city:"Hardoi", state: "UttarPradesh"}
+// const basicInfo = {name: "Saksham Bajpai", age: 20};
+// const locationInfo = {city:"Hardoi", state: "UttarPradesh"}
+
+// const fullProfile = {...basicInfo, ...locationInfo};
+// console.log(fullProfile);
+
+// object copy
+
+const obj1 = {age: 20, id: 101};
+const obj2 = {...obj1};
+
+console.log(obj2);
