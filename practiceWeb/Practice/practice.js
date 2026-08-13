@@ -50,4 +50,7 @@ const {id: settingsID, theme} = userSetting;
 const obj1 = {age: 20, id: 101};
 const obj2 = {...obj1};
 
+obj2.id = 105;
+console.log();
+
 console.log(obj2);
