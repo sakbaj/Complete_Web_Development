@@ -47,10 +47,19 @@ const {id: settingsID, theme} = userSetting;
 
 // object copy
 
-const obj1 = {age: 20, id: 101};
-const obj2 = {...obj1};
+// const obj1 = {age: 20, id: 101};
+// const obj2 = {...obj1};
 
-obj2.id = 105; // copy of an object
+// obj2.id = 105; // copy of an object
 
-console.log(obj1);
-console.log(obj2);
+// console.log(obj1);
+// console.log(obj2);
+
+// Object (Pass by reference)
+
+const a = 23;
+const b = a;
+
+b = 45;
+console.log(a);
+console.log(b);
