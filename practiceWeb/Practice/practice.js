@@ -64,6 +64,7 @@ const {id: settingsID, theme} = userSetting;
 // console.log(a);
 // console.log(b);
 
+// Objects(Pass by reference): in this changes will happen to both
 const obj1 = {name: "Saksham Bajpai"};
 const obj2 = obj1;
 
