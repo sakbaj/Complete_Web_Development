@@ -26,4 +26,7 @@
 
 const user = {id: 226, name:"Saksham"}
 
-const {id: fullID, name: "full_name"}
+const {id: fullID, name: fullname} = user;
+
+console.log(fullID);
+console.log(fullname);
