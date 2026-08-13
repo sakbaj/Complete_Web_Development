@@ -30,5 +30,8 @@ const userSetting = {id: 226, theme: "dark"}
 const {id: profileID, name} = userProfile;
 const {id: settingsID, theme} = userSetting;
 
-console.log(profileID);
-console.log(settingsID);
+// console.log(profileID);
+// console.log(settingsID);
+
+const originalUser = {name: "Saksham", age: 20};
+const 
