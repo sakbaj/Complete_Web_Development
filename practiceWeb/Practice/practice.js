@@ -18,14 +18,8 @@
 
 // console.log(obj.course);
 
-const student = {
-    name: "Saksham",
-    age: 21,
-    id: 226
-}
+const settings = {theme: "dark"};
 
-const {name, age} = student;
+const {theme, fontSize} = settings;
 
-console.log(name);
-console.log(age);
-
+console.log(fontSize);
