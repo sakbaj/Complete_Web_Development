@@ -34,4 +34,7 @@ const {id: settingsID, theme} = userSetting;
 // console.log(settingsID);
 
 const originalUser = {name: "Saksham", age: 20};
-const 
+const newobj = {...originalUser};
+newobj.age = 21;
+console.log(originalUser.age);
+console.log(newobj.age);
