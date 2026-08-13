@@ -24,9 +24,11 @@
 
 // console.log(fontSize);
 
-const user = {id: 226, name:"Saksham"}
+const userProfile = {id: 107, name: "Saksham Bajpai"};
+const userSetting = {id: 226, theme: "dark"}
 
-const {id: fullID, name: fullname} = user;
+const {id: profileID, name} = userProfile;
+const {id: settingsID, theme} = userSetting;
 
-console.log(fullID);
-console.log(fullname);
+console.log(profileID);
+console.log(settingsID);
