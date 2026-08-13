@@ -57,9 +57,15 @@ const {id: settingsID, theme} = userSetting;
 
 // Object (Pass by reference)
 
-const a = 23;
-const b = a;
+// const a = 23;
+// const b = a;
 
-b = 45;
-console.log(a);
-console.log(b);
+// b = 45;
+// console.log(a);
+// console.log(b);
+
+const obj1 = {name: "Saksham Bajpai"};
+const obj2 = obj1;
+
+obj2.name = "Ayush Bajpai";
+console.log(obj1.name);
