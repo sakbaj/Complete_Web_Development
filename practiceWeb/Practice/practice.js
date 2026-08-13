@@ -24,3 +24,6 @@
 
 // console.log(fontSize);
 
+const user = {id: 226, name:"Saksham"}
+
+const {id: fullID, name: "full_name"}
