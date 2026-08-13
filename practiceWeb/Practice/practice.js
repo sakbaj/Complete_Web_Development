@@ -18,8 +18,9 @@
 
 // console.log(obj.course);
 
-const settings = {theme: "dark"};
+// const settings = {theme: "dark"};
 
-const {theme, fontSize = '16px'} = settings;
+// const {theme, fontSize = '16px'} = settings;
 
-console.log(fontSize);
+// console.log(fontSize);
+
