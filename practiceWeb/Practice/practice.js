@@ -20,6 +20,6 @@
 
 const settings = {theme: "dark"};
 
-const {theme, fontSize} = settings;
+const {theme, fontSize = '16px'} = settings;
 
 console.log(fontSize);
