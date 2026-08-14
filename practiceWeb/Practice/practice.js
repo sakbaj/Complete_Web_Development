@@ -85,3 +85,6 @@ const {id: settingsID, theme} = userSetting;
 
 // programs using JavaScript.
 
+let a = {
+    name
+}
