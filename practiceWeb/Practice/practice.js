@@ -73,13 +73,15 @@ const {id: settingsID, theme} = userSetting;
 
 // Objects initialisation:
 
-const user1 = {
-    name: "Saksham",
-    age: 20,
-    rollNo: 226,
-    "full name": "Saksham Bajpai",
-    email: "sakshambajpaihdi@gmail.com"
-}
+// const user1 = {
+//     name: "Saksham",
+//     age: 20,
+//     rollNo: 226,
+//     "full name": "Saksham Bajpai",
+//     email: "sakshambajpaihdi@gmail.com"
+// }
 
-console.log(user1["email"]);
+// console.log(user1["email"]);
+
+// programs using JavaScript.
 
