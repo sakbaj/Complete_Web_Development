@@ -24,11 +24,11 @@
 
 // console.log(fontSize);
 
-const userProfile = {id: 107, name: "Saksham Bajpai"};
-const userSetting = {id: 226, theme: "dark"}
+const userProfile = { id: 107, name: "Saksham Bajpai" };
+const userSetting = { id: 226, theme: "dark" };
 
-const {id: profileID, name} = userProfile;
-const {id: settingsID, theme} = userSetting;
+const { id: profileID, name } = userProfile;
+const { id: settingsID, theme } = userSetting;
 
 // console.log(profileID);
 // console.log(settingsID);
@@ -96,6 +96,3 @@ const {id: settingsID, theme} = userSetting;
 // console.log(stud[mySym]);
 
 
-const obj = {name: "Saksham",
-     age:20}
-console.log(obj.name);
