@@ -95,7 +95,4 @@ const { id: settingsID, theme } = userSetting;
 // console.log(stud.mySym);
 // console.log(stud[mySym]);
 
-const obj = { name: "SakshamBajpai", 
-    age: 22, rollno: 226 };
-
-    
+const obj = { name: "SakshamBajpai", age: 22, rollno: 226 };
