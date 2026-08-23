@@ -96,4 +96,6 @@ const {id: settingsID, theme} = userSetting;
 // console.log(stud[mySym]);
 
 
-const x= [1,2,3].map(n=>{return n*2})
+const obj = {name: "Saksham",
+     age:20}
+console.log(obj.name);
