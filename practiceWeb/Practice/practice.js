@@ -95,6 +95,5 @@ const {id: settingsID, theme} = userSetting;
 // console.log(stud.mySym);
 // console.log(stud[mySym]);
 
-const obj = {name: "Saksham", age:20, rollno: 226}
 
-
+const x= [1,2,3].map(n=>{return n*2})
