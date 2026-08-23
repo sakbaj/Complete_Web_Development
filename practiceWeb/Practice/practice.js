@@ -85,12 +85,16 @@ const {id: settingsID, theme} = userSetting;
 
 // programs using JavaScript.
 
-const mySym = Symbol("key1");
+// const mySym = Symbol("key1");
 
-const stud = {
-    mySym: "This is a string key",
-    [mySym]: "This is a symbol key"
-}
+// const stud = {
+//     mySym: "This is a string key",
+//     [mySym]: "This is a symbol key"
+// }
 
-console.log(stud.mySym);
-console.log(stud[mySym]);
+// console.log(stud.mySym);
+// console.log(stud[mySym]);
+
+const obj = {name: "Saksham", age:20, rollno: 226}
+
+
