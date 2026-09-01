@@ -1,4 +1,9 @@
 // Arrays in javaScript
 
-const arr = ["Saksham", 226, "BCA"];
-console.log(arr[2]);
+const obj = {
+  name: "Saksham",
+  course: "BCA",
+  rollNo: 226,
+};
+
+console.log(obj.rollNo);
