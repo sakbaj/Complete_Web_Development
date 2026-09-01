@@ -2,8 +2,8 @@
 
 const obj = {
   name: "Saksham",
-  course: "BCA",
+  "full name": "Saksham Bajpai",
   rollNo: 226,
 };
 
-console.log(obj.rollNo);
+console.log(obj["full name"]);
