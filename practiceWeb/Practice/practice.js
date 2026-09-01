@@ -1,9 +1,6 @@
 // Arrays in javaScript
 
-const obj = {
-  name: "Saksham",
-  "full name": "Saksham Bajpai",
-  rollNo: 226,
-};
+let arr = ["Saksham", true, false, 34, 23.5];
 
-console.log(obj["full name"]);
+arr.unshift("gdhcdhcf");
+console.log(arr);
