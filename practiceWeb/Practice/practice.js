@@ -2,5 +2,5 @@
 
 let arr = ["Saksham", true, false, 34, 23.5];
 
-arr.slice(2, 4);
-console.log(arr);
+let new_arr = arr.slice(2, 4);
+console.log(new_arr);
