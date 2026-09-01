@@ -1,6 +1,6 @@
 // Arrays in javaScript
 
-let arr = [4, 8, 16, 32];
+let prices = [40, 50, 60, 70];
 
-let doubled = arr.map((num) => num * 2);
-console.log(doubled);
+let doubledPrices = prices.map((price) => price * 3);
+console.log(doubledPrices);
