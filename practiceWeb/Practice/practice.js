@@ -2,5 +2,5 @@
 
 let arr = ["Saksham", true, false, 34, 23.5];
 
-arr.unshift("gdhcdhcf");
+arr.slice(2, 4);
 console.log(arr);
