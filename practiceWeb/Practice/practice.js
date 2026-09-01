@@ -1,6 +1,6 @@
 // Arrays in javaScript
 
-let arr = [13, 34, 23, 53, 56, 51];
+let arr = [13, 39, 23, 53, 56, 51];
 
 let new_arr = arr.splice(2, 4, 34, 45, 69);
 // slice(): In this, It doesn't change the original array...
