@@ -1,6 +1,12 @@
-// Arrays in javaScript
+// Objects in JavaScript
 
-let prices = [40, 50, 60, 70];
+const obj = {
+  name: "Saksham",
+  course: "BCA",
 
-let doubledPrices = prices.map((price) => price * 3);
-console.log(doubledPrices);
+  greetMessage: function () {
+    console.log("Hello Namaste Everyone");
+  },
+};
+
+obj.greetMessage();
