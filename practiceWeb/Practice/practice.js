@@ -1,5 +1,5 @@
 // Objects in JavaScript
 
-const a = 34;
-a = 67;
-console.log(a);
+for (let i = 1; i < 10; i++) {
+  console.log("Hello Saksham! How're you?");
+}
