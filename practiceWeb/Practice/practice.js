@@ -1,5 +1,6 @@
 // Objects in JavaScript
 
-for (let i = 1; i < 10; i++) {
-  console.log("Hello Saksham! How're you?");
-}
+const arr = ["Saksham", 226, "BCA", "D"];
+
+arr[4] = 34;
+console.log(arr);
