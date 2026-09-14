@@ -1,6 +1,7 @@
 // Objects in JavaScript
 
-const arr = ["Saksham", 226, "BCA", "D"];
+let a = [10, 20, 30, 40, 50];
 
-arr[4] = 34;
-console.log(arr);
+a.splice(3, 2, 12, 24, 29);
+
+console.log(a);
