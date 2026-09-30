@@ -1,0 +1,2037 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Saksham Bajpai | Full-Stack Software Developer & AI Enthusiast
+    </title>
+
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome 6 for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Tailwind CSS CDN with custom config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', "sans-serif"],
+              mono: ['"JetBrains Mono"', "monospace"],
+            },
+            colors: {
+              brand: {
+                50: "#eef2ff",
+                100: "#e0e7ff",
+                400: "#818cf8",
+                500: "#6366f1",
+                600: "#4f46e5",
+                700: "#4338ca",
+              },
+              dark: {
+                bg: "#0a0d14",
+                surface: "#121723",
+                card: "#182032",
+                border: "#263147",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Custom subtle glassmorphism and background mesh */
+      .glass-nav {
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+      .grid-pattern {
+        background-size: 32px 32px;
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(99, 102, 241, 0.05) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(99, 102, 241, 0.05) 1px,
+            transparent 1px
+          );
+      }
+      .dark .grid-pattern {
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.035) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.035) 1px,
+            transparent 1px
+          );
+      }
+      /* Glow hover */
+      .glow-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .glow-card:hover {
+        box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.25);
+      }
+      /* Hide scrollbar for category tabs */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-slate-100 font-sans transition-colors duration-300 min-h-screen flex flex-col antialiased relative selection:bg-brand-500 selection:text-white"
+  >
+    <!-- Ambient light blobs in background -->
+    <div
+      class="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-60 dark:opacity-40"
+    >
+      <div
+        class="absolute -top-32 -left-32 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl"
+      ></div>
+      <div
+        class="absolute top-1/3 -right-32 w-96 h-96 bg-purple-500/15 rounded-full blur-3xl"
+      ></div>
+      <div
+        class="absolute -bottom-32 left-1/4 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl"
+      ></div>
+    </div>
+
+    <header
+      class="sticky top-0 z-50 w-full glass-nav border-b border-slate-200/80 dark:border-dark-border/80 bg-white/75 dark:bg-dark-bg/80"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Brand Initials / Logo -->
+          <a href="#hero" class="flex items-center gap-2.5 group">
+            <div
+              class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-400 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform"
+            >
+              SB
+            </div>
+            <div class="flex flex-col">
+              <span
+                class="font-bold tracking-tight text-slate-900 dark:text-white text-base leading-tight"
+                >Saksham Bajpai</span
+              >
+              <span
+                class="text-[11px] font-mono text-brand-600 dark:text-brand-400 font-medium"
+                >Full-Stack &amp; AI</span
+              >
+            </div>
+          </a>
+
+          <!-- Desktop Navigation Links -->
+          <nav
+            class="hidden md:flex items-center gap-1 font-medium text-sm text-slate-600 dark:text-slate-300"
+          >
+            <a
+              href="#about"
+              class="px-3.5 py-1.5 rounded-lg hover:text-brand-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-dark-surface transition"
+              >About</a
+            >
+            <a
+              href="#skills"
+              class="px-3.5 py-1.5 rounded-lg hover:text-brand-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-dark-surface transition"
+              >Skills</a
+            >
+            <a
+              href="#projects"
+              class="px-3.5 py-1.5 rounded-lg hover:text-brand-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-dark-surface transition"
+              >Projects</a
+            >
+            <a
+              href="#milestones"
+              class="px-3.5 py-1.5 rounded-lg hover:text-brand-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-dark-surface transition"
+              >Milestones</a
+            >
+            <a
+              href="#contact"
+              class="px-3.5 py-1.5 rounded-lg hover:text-brand-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-dark-surface transition"
+              >Contact</a
+            >
+          </nav>
+
+          <!-- Right Side: Dark Mode Toggle & CTA -->
+          <div class="flex items-center gap-3">
+            <button
+              id="themeToggleBtn"
+              type="button"
+              aria-label="Toggle Theme"
+              class="w-9 h-9 rounded-lg border border-slate-200 dark:border-dark-border text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-dark-surface flex items-center justify-center transition"
+            >
+              <i id="themeIcon" class="fa-solid fa-moon text-sm"></i>
+            </button>
+
+            <a
+              href="#contact"
+              class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-brand-600 hover:bg-brand-500 text-white shadow-sm shadow-brand-500/25 transition"
+            >
+              <span>Let's Connect</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+
+            <!-- Mobile Hamburger -->
+            <button
+              id="mobileMenuBtn"
+              type="button"
+              aria-label="Open menu"
+              class="md:hidden w-9 h-9 rounded-lg border border-slate-200 dark:border-dark-border text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-dark-surface flex items-center justify-center transition"
+            >
+              <i class="fa-solid fa-bars text-base"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div
+          id="mobileMenu"
+          class="hidden md:hidden pb-4 pt-2 border-t border-slate-200 dark:border-dark-border mt-2 space-y-1"
+        >
+          <a
+            href="#about"
+            class="block px-3 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-dark-surface text-sm font-medium"
+            >About</a
+          >
+          <a
+            href="#skills"
+            class="block px-3 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-dark-surface text-sm font-medium"
+            >Skills</a
+          >
+          <a
+            href="#projects"
+            class="block px-3 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-dark-surface text-sm font-medium"
+            >Projects</a
+          >
+          <a
+            href="#milestones"
+            class="block px-3 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-dark-surface text-sm font-medium"
+            >Milestones</a
+          >
+          <a
+            href="#contact"
+            class="block px-3 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-dark-surface text-sm font-medium"
+            >Contact</a
+          >
+          <a
+            href="#contact"
+            class="block mt-2 w-full text-center px-4 py-2.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs transition"
+            >Get in Touch</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-grow z-10">
+      <section
+        id="hero"
+        class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden grid-pattern"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Status Badges Row -->
+          <div class="flex flex-wrap items-center gap-3 mb-6">
+            <span
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20"
+            >
+              <span class="relative flex h-2 w-2">
+                <span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+                ></span>
+                <span
+                  class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"
+                ></span>
+              </span>
+              Available for Opportunities
+            </span>
+
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-200/60 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-dark-border"
+            >
+              <i class="fa-solid fa-location-dot text-brand-500"></i>
+              Uttar Pradesh, India
+            </span>
+
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-brand-50 dark:bg-brand-950/40 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800"
+            >
+              <i class="fa-solid fa-graduation-cap"></i>
+              BCA Graduate (SRMU)
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <!-- Hero Text -->
+            <div class="lg:col-span-7 space-y-6">
+              <h1
+                class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]"
+              >
+                Hi, I'm
+                <span
+                  class="bg-gradient-to-r from-brand-600 via-indigo-500 to-purple-500 bg-clip-text text-transparent"
+                  >Saksham Bajpai</span
+                >
+                👋
+              </h1>
+
+              <p
+                class="text-xl sm:text-2xl font-semibold text-slate-700 dark:text-slate-200"
+              >
+                Full-Stack Software Developer &amp; AI Integrator
+              </p>
+
+              <p
+                class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed"
+              >
+                I build production-grade web systems and intelligent digital
+                experiences. Specializing in high-performance architectures with
+                <strong class="text-slate-900 dark:text-white font-medium"
+                  >React, Next.js, Node.js, Java Spring Boot</strong
+                >, and automated workflows with
+                <strong class="text-brand-600 dark:text-brand-400 font-medium"
+                  >Google Gemini AI</strong
+                >.
+              </p>
+
+              <!-- Action Buttons -->
+              <div class="flex flex-wrap items-center gap-3 pt-2">
+                <a
+                  href="#projects"
+                  class="px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm shadow-md shadow-brand-500/25 transition flex items-center gap-2"
+                >
+                  <span>View Projects</span>
+                  <i class="fa-solid fa-layer-group text-xs"></i>
+                </a>
+
+                <a
+                  href="#contact"
+                  class="px-6 py-3 rounded-xl bg-slate-200 dark:bg-dark-card hover:bg-slate-300 dark:hover:bg-dark-border text-slate-900 dark:text-white font-semibold text-sm border border-slate-300/70 dark:border-dark-border transition flex items-center gap-2"
+                >
+                  <span>Contact Me</span>
+                  <i class="fa-regular fa-paper-plane text-xs"></i>
+                </a>
+
+                <button
+                  onclick="downloadResumePlaceholder()"
+                  class="px-5 py-3 rounded-xl border border-dashed border-slate-400 dark:border-slate-600 hover:border-brand-500 text-slate-700 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 font-medium text-sm transition flex items-center gap-2"
+                >
+                  <i class="fa-solid fa-file-arrow-down text-xs"></i>
+                  <span>Download CV</span>
+                </button>
+              </div>
+
+              <!-- Social Links & Presence -->
+              <div
+                class="pt-4 flex items-center gap-4 text-slate-500 dark:text-slate-400"
+              >
+                <span
+                  class="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500"
+                  >Connect:</span
+                >
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub Profile"
+                  class="w-10 h-10 rounded-lg flex items-center justify-center bg-slate-100 dark:bg-dark-surface hover:text-brand-600 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-dark-card transition border border-slate-200 dark:border-dark-border"
+                >
+                  <i class="fa-brands fa-github text-lg"></i>
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn Profile"
+                  class="w-10 h-10 rounded-lg flex items-center justify-center bg-slate-100 dark:bg-dark-surface hover:text-brand-600 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-dark-card transition border border-slate-200 dark:border-dark-border"
+                >
+                  <i class="fa-brands fa-linkedin-in text-lg"></i>
+                </a>
+                <a
+                  href="mailto:sakshambajpai.dev@gmail.com"
+                  aria-label="Email Saksham"
+                  class="w-10 h-10 rounded-lg flex items-center justify-center bg-slate-100 dark:bg-dark-surface hover:text-brand-600 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-dark-card transition border border-slate-200 dark:border-dark-border"
+                >
+                  <i class="fa-regular fa-envelope text-lg"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Hero Right: Interactive Code Card -->
+            <div class="lg:col-span-5">
+              <div class="relative mx-auto max-w-md glow-card">
+                <!-- Backdrop gradient rings -->
+                <div
+                  class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-brand-600 to-purple-600 opacity-20 blur-xl"
+                ></div>
+
+                <div
+                  class="relative rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border p-6 shadow-xl"
+                >
+                  <!-- Terminal header dots -->
+                  <div
+                    class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-dark-border mb-4"
+                  >
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="w-3 h-3 rounded-full bg-rose-500 inline-block"
+                      ></span>
+                      <span
+                        class="w-3 h-3 rounded-full bg-amber-500 inline-block"
+                      ></span>
+                      <span
+                        class="w-3 h-3 rounded-full bg-emerald-500 inline-block"
+                      ></span>
+                    </div>
+                    <span
+                      class="text-xs font-mono text-slate-400 dark:text-slate-500 flex items-center gap-1.5"
+                    >
+                      <i class="fa-solid fa-code text-[11px]"></i>
+                      developer-profile.ts
+                    </span>
+                  </div>
+
+                  <!-- Code block representation -->
+                  <pre
+                    class="font-mono text-xs text-slate-700 dark:text-slate-300 space-y-1.5 overflow-x-auto leading-relaxed"
+                  >
+<code><span class="text-purple-600 dark:text-purple-400">const</span> developer = {
+  <span class="text-brand-600 dark:text-indigo-400">name</span>: <span class="text-emerald-600 dark:text-emerald-400">'Saksham Bajpai'</span>,
+  <span class="text-brand-600 dark:text-indigo-400">role</span>: <span class="text-emerald-600 dark:text-emerald-400">'Full-Stack &amp; AI Builder'</span>,
+  <span class="text-brand-600 dark:text-indigo-400">education</span>: <span class="text-emerald-600 dark:text-emerald-400">'BCA, SRMU'</span>,
+  <span class="text-brand-600 dark:text-indigo-400">coreStack</span>: [
+    <span class="text-amber-600 dark:text-amber-300">'React'</span>, <span class="text-amber-600 dark:text-amber-300">'Next.js'</span>,
+    <span class="text-amber-600 dark:text-amber-300">'Java / Spring'</span>, <span class="text-amber-600 dark:text-amber-300">'Node'</span>,
+    <span class="text-amber-600 dark:text-amber-300">'Gemini AI'</span>, <span class="text-amber-600 dark:text-amber-300">'Supabase'</span>
+  ],
+  <span class="text-brand-600 dark:text-indigo-400">chessLover</span>: <span class="text-rose-500">true</span>,
+  <span class="text-brand-600 dark:text-indigo-400">readyToDeploy</span>: () =&gt; <span class="text-emerald-600 dark:text-emerald-400">'Let us create impact!'</span>
+};</code></pre>
+
+                  <!-- Mini stat strip inside hero card -->
+                  <div
+                    class="mt-6 pt-4 border-t border-slate-100 dark:border-dark-border grid grid-cols-3 gap-2 text-center"
+                  >
+                    <div
+                      class="p-2 rounded-lg bg-slate-50 dark:bg-dark-surface border border-slate-200/50 dark:border-dark-border/60"
+                    >
+                      <div
+                        class="text-lg font-bold text-brand-600 dark:text-brand-400"
+                      >
+                        10+
+                      </div>
+                      <div
+                        class="text-[11px] text-slate-500 dark:text-slate-400 font-medium"
+                      >
+                        Projects
+                      </div>
+                    </div>
+                    <div
+                      class="p-2 rounded-lg bg-slate-50 dark:bg-dark-surface border border-slate-200/50 dark:border-dark-border/60"
+                    >
+                      <div
+                        class="text-lg font-bold text-purple-600 dark:text-purple-400"
+                      >
+                        Top 10
+                      </div>
+                      <div
+                        class="text-[11px] text-slate-500 dark:text-slate-400 font-medium"
+                      >
+                        Hackathons
+                      </div>
+                    </div>
+                    <div
+                      class="p-2 rounded-lg bg-slate-50 dark:bg-dark-surface border border-slate-200/50 dark:border-dark-border/60"
+                    >
+                      <div
+                        class="text-lg font-bold text-emerald-600 dark:text-emerald-400"
+                      >
+                        Tata Pankh
+                      </div>
+                      <div
+                        class="text-[11px] text-slate-500 dark:text-slate-400 font-medium"
+                      >
+                        Scholar
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="about"
+        class="py-20 bg-white/70 dark:bg-dark-surface/40 border-y border-slate-200 dark:border-dark-border"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col md:flex-row gap-12 items-start">
+            <div class="md:w-1/3 space-y-4">
+              <span
+                class="text-xs font-mono font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400"
+                >Background &amp; Ethos</span
+              >
+              <h2
+                class="text-3xl font-extrabold text-slate-900 dark:text-white"
+              >
+                Passionate problem solver &amp; tech craftsman.
+              </h2>
+              <p
+                class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed"
+              >
+                Based in Uttar Pradesh, I combine clean software design patterns
+                with modern full-stack workflows to create responsive, scalable,
+                and human-centric software.
+              </p>
+              <div
+                class="p-4 rounded-xl bg-slate-50 dark:bg-dark-card border border-slate-200 dark:border-dark-border flex items-center gap-4"
+              >
+                <div
+                  class="w-12 h-12 rounded-lg bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl shrink-0"
+                >
+                  <i class="fa-solid fa-chess-knight"></i>
+                </div>
+                <div class="text-xs text-slate-600 dark:text-slate-300">
+                  <strong
+                    class="text-slate-900 dark:text-white block font-semibold"
+                    >Strategic Thinker</strong
+                  >
+                  Keen chess player — applying calculation, positional
+                  foresight, and tactical adaptability to codebases and
+                  architecture.
+                </div>
+              </div>
+            </div>
+
+            <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <!-- About Card 1 -->
+              <div
+                class="p-6 rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border glow-card"
+              >
+                <div
+                  class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-4 text-lg"
+                >
+                  <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <h3
+                  class="text-lg font-bold text-slate-900 dark:text-white mb-2"
+                >
+                  Modern Web Architectures
+                </h3>
+                <p
+                  class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed"
+                >
+                  Crafting performant client-side and server-rendered
+                  applications using Next.js, React 19, Tailwind CSS, and
+                  resilient microservices.
+                </p>
+              </div>
+
+              <!-- About Card 2 -->
+              <div
+                class="p-6 rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border glow-card"
+              >
+                <div
+                  class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-4 text-lg"
+                >
+                  <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3
+                  class="text-lg font-bold text-slate-900 dark:text-white mb-2"
+                >
+                  Applied AI &amp; LLM Integrations
+                </h3>
+                <p
+                  class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed"
+                >
+                  Integrating Google Gemini API, Spring AI, and structured
+                  prompt pipelines to turn complex tasks into fluid automated
+                  user experiences.
+                </p>
+              </div>
+
+              <!-- About Card 3 -->
+              <div
+                class="p-6 rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border glow-card"
+              >
+                <div
+                  class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4 text-lg"
+                >
+                  <i class="fa-solid fa-server"></i>
+                </div>
+                <h3
+                  class="text-lg font-bold text-slate-900 dark:text-white mb-2"
+                >
+                  Secure Backend &amp; APIs
+                </h3>
+                <p
+                  class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed"
+                >
+                  Experienced in Node.js, Express, Java Spring Boot, JWT,
+                  role-based authorization, and documented REST endpoints via
+                  Swagger &amp; Postman.
+                </p>
+              </div>
+
+              <!-- About Card 4 -->
+              <div
+                class="p-6 rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border glow-card"
+              >
+                <div
+                  class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-4 text-lg"
+                >
+                  <i class="fa-solid fa-award"></i>
+                </div>
+                <h3
+                  class="text-lg font-bold text-slate-900 dark:text-white mb-2"
+                >
+                  Recognition &amp; Community
+                </h3>
+                <p
+                  class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed"
+                >
+                  Tata Capital Pankh Scholarship recipient, active participant
+                  in Google Developer Group (GDG) hackathons, DevFest, and civic
+                  tech events.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-3xl mx-auto mb-14">
+            <span
+              class="text-xs font-mono font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400"
+              >Toolkit &amp; Competencies</span
+            >
+            <h2
+              class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-2"
+            >
+              Technical Skills &amp; Stack
+            </h2>
+            <p
+              class="text-slate-600 dark:text-slate-300 mt-3 text-sm sm:text-base"
+            >
+              Tools, languages, and frameworks I use to engineer robust digital
+              systems from conception to cloud deployment.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Category 1: Frontend -->
+            <div
+              class="rounded-2xl p-6 bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border glow-card flex flex-col justify-between"
+            >
+              <div>
+                <div class="flex items-center gap-3 mb-5">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center text-lg"
+                  >
+                    <i class="fa-solid fa-code"></i>
+                  </div>
+                  <h3
+                    class="font-bold text-slate-900 dark:text-white text-base"
+                  >
+                    Frontend
+                  </h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-brands fa-react text-cyan-400"></i> React.js
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i
+                      class="fa-solid fa-bolt text-slate-900 dark:text-white"
+                    ></i>
+                    Next.js
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-brands fa-js text-yellow-400"></i> JavaScript
+                    (ES6+)
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-brands fa-html5 text-orange-500"></i> HTML5
+                    &amp; CSS3
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-solid fa-wind text-teal-400"></i> Tailwind CSS
+                  </span>
+                </div>
+              </div>
+              <p
+                class="mt-6 text-[11px] font-mono text-slate-400 dark:text-slate-500"
+              >
+                Responsive • Accessible • Fluid UX
+              </p>
+            </div>
+
+            <!-- Category 2: Backend & Systems -->
+            <div
+              class="rounded-2xl p-6 bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border glow-card flex flex-col justify-between"
+            >
+              <div>
+                <div class="flex items-center gap-3 mb-5">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-lg"
+                  >
+                    <i class="fa-solid fa-server"></i>
+                  </div>
+                  <h3
+                    class="font-bold text-slate-900 dark:text-white text-base"
+                  >
+                    Backend &amp; Systems
+                  </h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-brands fa-java text-rose-500"></i> Java
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-solid fa-leaf text-emerald-500"></i> Spring
+                    Boot
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-brands fa-node-js text-green-600"></i> Node.js
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-solid fa-network-wired text-slate-500"></i>
+                    Express.js
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-solid fa-terminal text-indigo-400"></i> C / C++
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-solid fa-key text-amber-500"></i> JWT &amp;
+                    Auth
+                  </span>
+                </div>
+              </div>
+              <p
+                class="mt-6 text-[11px] font-mono text-slate-400 dark:text-slate-500"
+              >
+                Scalable • REST • Modular
+              </p>
+            </div>
+
+            <!-- Category 3: Databases & Cloud -->
+            <div
+              class="rounded-2xl p-6 bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border glow-card flex flex-col justify-between"
+            >
+              <div>
+                <div class="flex items-center gap-3 mb-5">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center text-lg"
+                  >
+                    <i class="fa-solid fa-database"></i>
+                  </div>
+                  <h3
+                    class="font-bold text-slate-900 dark:text-white text-base"
+                  >
+                    Databases &amp; Cloud
+                  </h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-solid fa-database text-blue-400"></i>
+                    PostgreSQL
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-solid fa-bolt-lightning text-emerald-400"></i>
+                    Supabase
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-solid fa-leaf text-green-500"></i> MongoDB
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-solid fa-cloud text-sky-400"></i> Vercel &amp;
+                    Render
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-brands fa-git-alt text-orange-600"></i> Git
+                    &amp; GitHub
+                  </span>
+                </div>
+              </div>
+              <p
+                class="mt-6 text-[11px] font-mono text-slate-400 dark:text-slate-500"
+              >
+                ACID • Realtime • Version Control
+              </p>
+            </div>
+
+            <!-- Category 4: AI & Dev Tools -->
+            <div
+              class="rounded-2xl p-6 bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border glow-card flex flex-col justify-between"
+            >
+              <div>
+                <div class="flex items-center gap-3 mb-5">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-lg"
+                  >
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                  </div>
+                  <h3
+                    class="font-bold text-slate-900 dark:text-white text-base"
+                  >
+                    AI &amp; Dev Tools
+                  </h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-solid fa-microchip text-brand-500"></i> Gemini
+                    API
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-solid fa-robot text-purple-400"></i> Prompt
+                    Engineering
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-solid fa-diagram-project text-cyan-500"></i>
+                    Agentic Workflows
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-solid fa-paper-plane text-orange-500"></i>
+                    Postman
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200 hover:border-brand-500 transition"
+                  >
+                    <i class="fa-solid fa-book text-emerald-500"></i> Swagger UI
+                  </span>
+                </div>
+              </div>
+              <p
+                class="mt-6 text-[11px] font-mono text-slate-400 dark:text-slate-500"
+              >
+                Prompt Design • API Docs • Testing
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="projects"
+        class="py-20 bg-slate-100/60 dark:bg-dark-surface/30 border-y border-slate-200 dark:border-dark-border"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6"
+          >
+            <div>
+              <span
+                class="text-xs font-mono font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400"
+                >Featured Showcase</span
+              >
+              <h2
+                class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1"
+              >
+                Highlighted Projects
+              </h2>
+              <p class="text-slate-600 dark:text-slate-300 text-sm mt-2">
+                Engineered solutions solving civic governance, enterprise
+                e-commerce, and generative AI productivity.
+              </p>
+            </div>
+
+            <!-- Filter Pills -->
+            <div
+              class="flex items-center gap-2 p-1.5 rounded-xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border self-start md:self-auto overflow-x-auto no-scrollbar"
+            >
+              <button
+                onclick="filterProjects('all')"
+                id="filter-all"
+                class="project-filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 text-white transition"
+              >
+                All (3)
+              </button>
+              <button
+                onclick="filterProjects('fullstack')"
+                id="filter-fullstack"
+                class="project-filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-dark-surface transition"
+              >
+                Full-Stack
+              </button>
+              <button
+                onclick="filterProjects('ai')"
+                id="filter-ai"
+                class="project-filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-dark-surface transition"
+              >
+                AI Powered
+              </button>
+            </div>
+          </div>
+
+          <!-- Project Cards Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- PROJECT 1: LNN-Nivaaran -->
+            <div
+              class="project-card glow-card rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border overflow-hidden flex flex-col justify-between"
+              data-category="ai,fullstack"
+            >
+              <div>
+                <div
+                  class="h-48 bg-gradient-to-tr from-brand-900 via-indigo-950 to-slate-900 p-6 flex flex-col justify-between relative overflow-hidden"
+                >
+                  <div
+                    class="absolute -right-8 -bottom-8 w-36 h-36 bg-brand-500/20 rounded-full blur-2xl pointer-events-none"
+                  ></div>
+                  <div class="flex items-center justify-between z-10">
+                    <span
+                      class="px-2.5 py-1 rounded-md text-[11px] font-mono font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+                    >
+                      <i class="fa-solid fa-landmark text-[10px] mr-1"></i>
+                      Civic Governance
+                    </span>
+                    <span class="text-xs text-slate-300 font-mono"
+                      >Next.js 15 • Supabase</span
+                    >
+                  </div>
+                  <div class="z-10">
+                    <h3 class="text-2xl font-bold text-white tracking-tight">
+                      LNN-Nivaaran (जनमित्र)
+                    </h3>
+                    <p class="text-xs text-slate-300 mt-1">
+                      Smart Grievance Redressal &amp; Civic Portal
+                    </p>
+                  </div>
+                </div>
+
+                <div class="p-6">
+                  <p
+                    class="text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed"
+                  >
+                    An AI-driven municipal governance platform automating
+                    citizen grievance intake, image issue validation with Gemini
+                    AI, interactive geo-mapping, and real-time administrative
+                    analytics.
+                  </p>
+
+                  <div
+                    class="space-y-2 mb-6 text-xs text-slate-700 dark:text-slate-300"
+                  >
+                    <div class="flex items-center gap-2">
+                      <i
+                        class="fa-solid fa-check text-brand-500 text-[11px]"
+                      ></i>
+                      <span
+                        >Automatic categorization &amp; severity rating via
+                        Gemini API</span
+                      >
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <i
+                        class="fa-solid fa-check text-brand-500 text-[11px]"
+                      ></i>
+                      <span
+                        >Leaflet interactive map for geolocation
+                        verification</span
+                      >
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <i
+                        class="fa-solid fa-check text-brand-500 text-[11px]"
+                      ></i>
+                      <span
+                        >Recharts analytics dashboard for ward supervisors</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="flex flex-wrap gap-1.5 mb-2">
+                    <span
+                      class="px-2 py-1 rounded text-[11px] font-mono bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-dark-border"
+                      >Next.js</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded text-[11px] font-mono bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-dark-border"
+                      >React 19</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded text-[11px] font-mono bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-dark-border"
+                      >Gemini API</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded text-[11px] font-mono bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-dark-border"
+                      >Supabase</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded text-[11px] font-mono bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-dark-border"
+                      >Tailwind</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="p-6 pt-0 border-t border-slate-100 dark:border-dark-border mt-2"
+              >
+                <div class="flex items-center justify-between gap-3 pt-4">
+                  <button
+                    onclick="openProjectModal('lnn')"
+                    class="flex-1 text-center py-2.5 px-3 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-medium text-xs transition flex items-center justify-center gap-1.5"
+                  >
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Architecture Details</span>
+                  </button>
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-2.5 rounded-lg border border-slate-200 dark:border-dark-border hover:bg-slate-100 dark:hover:bg-dark-surface text-slate-700 dark:text-slate-200 text-xs transition flex items-center justify-center"
+                    aria-label="GitHub Repo"
+                  >
+                    <i class="fa-brands fa-github text-sm"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- PROJECT 2: QuickBasket -->
+            <div
+              class="project-card glow-card rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border overflow-hidden flex flex-col justify-between"
+              data-category="fullstack"
+            >
+              <div>
+                <div
+                  class="h-48 bg-gradient-to-tr from-cyan-950 via-slate-900 to-indigo-950 p-6 flex flex-col justify-between relative overflow-hidden"
+                >
+                  <div
+                    class="absolute -right-8 -bottom-8 w-36 h-36 bg-cyan-500/20 rounded-full blur-2xl pointer-events-none"
+                  ></div>
+                  <div class="flex items-center justify-between z-10">
+                    <span
+                      class="px-2.5 py-1 rounded-md text-[11px] font-mono font-medium bg-cyan-500/20 text-cyan-300 border border-cyan-500/30"
+                    >
+                      <i class="fa-solid fa-cart-shopping text-[10px] mr-1"></i>
+                      E-Commerce Architecture
+                    </span>
+                    <span class="text-xs text-slate-300 font-mono"
+                      >Node.js • Express</span
+                    >
+                  </div>
+                  <div class="z-10">
+                    <h3 class="text-2xl font-bold text-white tracking-tight">
+                      QuickBasket
+                    </h3>
+                    <p class="text-xs text-slate-300 mt-1">
+                      Scalable RESTful Commerce Engine
+                    </p>
+                  </div>
+                </div>
+
+                <div class="p-6">
+                  <p
+                    class="text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed"
+                  >
+                    Full-stack e-commerce web platform engineered with
+                    role-based JWT authentication, modular cart/inventory
+                    controllers, secure payments, and interactive Swagger
+                    documentation.
+                  </p>
+
+                  <div
+                    class="space-y-2 mb-6 text-xs text-slate-700 dark:text-slate-300"
+                  >
+                    <div class="flex items-center gap-2">
+                      <i
+                        class="fa-solid fa-check text-brand-500 text-[11px]"
+                      ></i>
+                      <span
+                        >JWT token refresh flows &amp; hashed password
+                        encryption</span
+                      >
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <i
+                        class="fa-solid fa-check text-brand-500 text-[11px]"
+                      ></i>
+                      <span>Interactive API explorer with Swagger UI</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <i
+                        class="fa-solid fa-check text-brand-500 text-[11px]"
+                      ></i>
+                      <span
+                        >Relational database queries with pagination &amp;
+                        search</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="flex flex-wrap gap-1.5 mb-2">
+                    <span
+                      class="px-2 py-1 rounded text-[11px] font-mono bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-dark-border"
+                      >Node.js</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded text-[11px] font-mono bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-dark-border"
+                      >Express</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded text-[11px] font-mono bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-dark-border"
+                      >PostgreSQL</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded text-[11px] font-mono bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-dark-border"
+                      >JWT</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded text-[11px] font-mono bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-dark-border"
+                      >Swagger</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="p-6 pt-0 border-t border-slate-100 dark:border-dark-border mt-2"
+              >
+                <div class="flex items-center justify-between gap-3 pt-4">
+                  <button
+                    onclick="openProjectModal('quickbasket')"
+                    class="flex-1 text-center py-2.5 px-3 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-medium text-xs transition flex items-center justify-center gap-1.5"
+                  >
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Architecture Details</span>
+                  </button>
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-2.5 rounded-lg border border-slate-200 dark:border-dark-border hover:bg-slate-100 dark:hover:bg-dark-surface text-slate-700 dark:text-slate-200 text-xs transition flex items-center justify-center"
+                    aria-label="GitHub Repo"
+                  >
+                    <i class="fa-brands fa-github text-sm"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- PROJECT 3: Smart Email Assistant -->
+            <div
+              class="project-card glow-card rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border overflow-hidden flex flex-col justify-between"
+              data-category="ai,fullstack"
+            >
+              <div>
+                <div
+                  class="h-48 bg-gradient-to-tr from-purple-950 via-slate-900 to-brand-950 p-6 flex flex-col justify-between relative overflow-hidden"
+                >
+                  <div
+                    class="absolute -right-8 -bottom-8 w-36 h-36 bg-purple-500/20 rounded-full blur-2xl pointer-events-none"
+                  ></div>
+                  <div class="flex items-center justify-between z-10">
+                    <span
+                      class="px-2.5 py-1 rounded-md text-[11px] font-mono font-medium bg-purple-500/20 text-purple-300 border border-purple-500/30"
+                    >
+                      <i
+                        class="fa-solid fa-envelope-open-text text-[10px] mr-1"
+                      ></i>
+                      Spring AI &amp; Enterprise
+                    </span>
+                    <span class="text-xs text-slate-300 font-mono"
+                      >Spring Boot 3 • Java</span
+                    >
+                  </div>
+                  <div class="z-10">
+                    <h3 class="text-2xl font-bold text-white tracking-tight">
+                      Smart Email Assistant
+                    </h3>
+                    <p class="text-xs text-slate-300 mt-1">
+                      Contextual AI Mail Composer
+                    </p>
+                  </div>
+                </div>
+
+                <div class="p-6">
+                  <p
+                    class="text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed"
+                  >
+                    An intelligent email assistant generating context-aware
+                    professional email drafts and quick tone-adjusted replies
+                    using Java 21, Spring Boot 3, and Spring AI.
+                  </p>
+
+                  <div
+                    class="space-y-2 mb-6 text-xs text-slate-700 dark:text-slate-300"
+                  >
+                    <div class="flex items-center gap-2">
+                      <i
+                        class="fa-solid fa-check text-brand-500 text-[11px]"
+                      ></i>
+                      <span
+                        >Tone controls: Professional, Friendly, Urgent, or
+                        Diplomatic</span
+                      >
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <i
+                        class="fa-solid fa-check text-brand-500 text-[11px]"
+                      ></i>
+                      <span
+                        >Spring AI enterprise abstraction layer for model
+                        routing</span
+                      >
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <i
+                        class="fa-solid fa-check text-brand-500 text-[11px]"
+                      ></i>
+                      <span
+                        >React extension interface with instant clipboard
+                        sync</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="flex flex-wrap gap-1.5 mb-2">
+                    <span
+                      class="px-2 py-1 rounded text-[11px] font-mono bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-dark-border"
+                      >Java 21</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded text-[11px] font-mono bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-dark-border"
+                      >Spring Boot 3</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded text-[11px] font-mono bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-dark-border"
+                      >Spring AI</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded text-[11px] font-mono bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-dark-border"
+                      >React</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded text-[11px] font-mono bg-slate-100 dark:bg-dark-surface text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-dark-border"
+                      >REST</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="p-6 pt-0 border-t border-slate-100 dark:border-dark-border mt-2"
+              >
+                <div class="flex items-center justify-between gap-3 pt-4">
+                  <button
+                    onclick="openProjectModal('emailai')"
+                    class="flex-1 text-center py-2.5 px-3 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-medium text-xs transition flex items-center justify-center gap-1.5"
+                  >
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Architecture Details</span>
+                  </button>
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-2.5 rounded-lg border border-slate-200 dark:border-dark-border hover:bg-slate-100 dark:hover:bg-dark-surface text-slate-700 dark:text-slate-200 text-xs transition flex items-center justify-center"
+                    aria-label="GitHub Repo"
+                  >
+                    <i class="fa-brands fa-github text-sm"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="milestones" class="py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-14">
+            <span
+              class="text-xs font-mono font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400"
+              >Journey &amp; Recognition</span
+            >
+            <h2
+              class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1"
+            >
+              Milestones &amp; Events
+            </h2>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mt-2">
+              Key highlights spanning academic excellence, national summits, and
+              developer community hackathons.
+            </p>
+          </div>
+
+          <!-- Vertical Timeline -->
+          <div
+            class="relative border-l-2 border-slate-200 dark:border-dark-border ml-4 sm:ml-32 space-y-10"
+          >
+            <!-- Item 1: Graduation -->
+            <div class="relative pl-6 sm:pl-8 group">
+              <!-- Timeline Pin -->
+              <div
+                class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-600 border-4 border-white dark:border-dark-bg group-hover:scale-125 transition-transform"
+              ></div>
+
+              <div
+                class="hidden sm:block absolute -left-32 top-1 text-right w-24"
+              >
+                <span
+                  class="text-xs font-mono font-semibold text-brand-600 dark:text-brand-400"
+                  >2026</span
+                >
+                <span class="block text-[11px] text-slate-400">Graduate</span>
+              </div>
+
+              <div
+                class="p-5 rounded-xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border shadow-sm"
+              >
+                <span
+                  class="sm:hidden inline-block text-xs font-mono font-semibold text-brand-600 dark:text-brand-400 mb-1"
+                  >2026 • Degree</span
+                >
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">
+                  Bachelor of Computer Applications (BCA)
+                </h3>
+                <p
+                  class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5"
+                >
+                  Shri Ramswaroop Memorial University (SRMU), Lucknow
+                </p>
+                <p
+                  class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed"
+                >
+                  Graduated with an emphasis on Data Structures, Algorithms,
+                  Software Engineering, Object-Oriented System Design, and
+                  Modern Cloud Databases.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 2: India AI Impact Summit -->
+            <div class="relative pl-6 sm:pl-8 group">
+              <div
+                class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-purple-600 border-4 border-white dark:border-dark-bg group-hover:scale-125 transition-transform"
+              ></div>
+
+              <div
+                class="hidden sm:block absolute -left-32 top-1 text-right w-24"
+              >
+                <span
+                  class="text-xs font-mono font-semibold text-purple-600 dark:text-purple-400"
+                  >Summit</span
+                >
+                <span class="block text-[11px] text-slate-400">New Delhi</span>
+              </div>
+
+              <div
+                class="p-5 rounded-xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border shadow-sm"
+              >
+                <span
+                  class="sm:hidden inline-block text-xs font-mono font-semibold text-purple-600 dark:text-purple-400 mb-1"
+                  >New Delhi • Summit</span
+                >
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">
+                  India AI Impact Summit
+                </h3>
+                <p
+                  class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5"
+                >
+                  National Tech Gathering
+                </p>
+                <p
+                  class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed"
+                >
+                  Engaged with leading AI practitioners and researchers
+                  discussing sovereign AI architectures, frontier LLM safety,
+                  and practical agentic deployment across public infrastructure.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 3: GDG DevFest & Hackathons -->
+            <div class="relative pl-6 sm:pl-8 group">
+              <div
+                class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-600 border-4 border-white dark:border-dark-bg group-hover:scale-125 transition-transform"
+              ></div>
+
+              <div
+                class="hidden sm:block absolute -left-32 top-1 text-right w-24"
+              >
+                <span
+                  class="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400"
+                  >Hackathon</span
+                >
+                <span class="block text-[11px] text-slate-400"
+                  >GDG Lucknow</span
+                >
+              </div>
+
+              <div
+                class="p-5 rounded-xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border shadow-sm"
+              >
+                <span
+                  class="sm:hidden inline-block text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 mb-1"
+                  >GDG Lucknow • DevFest</span
+                >
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">
+                  Google Developer Group (GDG) DevFest &amp; Hackathon
+                </h3>
+                <p
+                  class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5"
+                >
+                  Participant &amp; Solution Builder
+                </p>
+                <p
+                  class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed"
+                >
+                  Prototyped civic and AI-driven solutions within rapid sprint
+                  environments. Collaborated with designers, engineers, and
+                  mentors on scalable real-world problem statements.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 4: Tata Capital Pankh Scholar -->
+            <div class="relative pl-6 sm:pl-8 group">
+              <div
+                class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-amber-500 border-4 border-white dark:border-dark-bg group-hover:scale-125 transition-transform"
+              ></div>
+
+              <div
+                class="hidden sm:block absolute -left-32 top-1 text-right w-24"
+              >
+                <span class="text-xs font-mono font-semibold text-amber-500"
+                  >Scholarship</span
+                >
+                <span class="block text-[11px] text-slate-400"
+                  >Tata Capital</span
+                >
+              </div>
+
+              <div
+                class="p-5 rounded-xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border shadow-sm"
+              >
+                <span
+                  class="sm:hidden inline-block text-xs font-mono font-semibold text-amber-500 mb-1"
+                  >Recognition • Tata Capital</span
+                >
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">
+                  Tata Capital Pankh Scholarship Recipient
+                </h3>
+                <p
+                  class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5"
+                >
+                  Awarded for Academic Merit &amp; Dedication to Higher
+                  Education
+                </p>
+                <p
+                  class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed"
+                >
+                  Selected for competitive academic scholarship supporting
+                  high-potential students pursuing technology and professional
+                  disciplines.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="contact"
+        class="py-20 bg-slate-100/60 dark:bg-dark-surface/40 border-t border-slate-200 dark:border-dark-border"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-14">
+            <span
+              class="text-xs font-mono font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400"
+              >Get in touch</span
+            >
+            <h2
+              class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1"
+            >
+              Let's Build Something Together
+            </h2>
+            <p class="text-slate-600 dark:text-slate-300 text-sm mt-2">
+              Whether you have an upcoming project, open engineering role, or
+              want to discuss full-stack &amp; AI architectures, my inbox is
+              always open.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Contact Cards (Left) -->
+            <div class="lg:col-span-5 space-y-4">
+              <div
+                class="p-5 rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border glow-card flex items-center gap-4"
+              >
+                <div
+                  class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl shrink-0"
+                >
+                  <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div class="overflow-hidden">
+                  <span
+                    class="text-xs font-mono text-slate-400 dark:text-slate-500 block"
+                    >Direct Email</span
+                  >
+                  <a
+                    href="mailto:sakshambajpai.dev@gmail.com"
+                    class="text-sm font-semibold text-slate-800 dark:text-white hover:text-brand-600 dark:hover:text-brand-400 transition truncate block"
+                  >
+                    sakshambajpai.dev@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div
+                class="p-5 rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border glow-card flex items-center gap-4"
+              >
+                <div
+                  class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl shrink-0"
+                >
+                  <i class="fa-brands fa-linkedin-in"></i>
+                </div>
+                <div>
+                  <span
+                    class="text-xs font-mono text-slate-400 dark:text-slate-500 block"
+                    >Professional Network</span
+                  >
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm font-semibold text-slate-800 dark:text-white hover:text-brand-600 dark:hover:text-brand-400 transition"
+                  >
+                    linkedin.com/in/sakshambajpai
+                  </a>
+                </div>
+              </div>
+
+              <div
+                class="p-5 rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border glow-card flex items-center gap-4"
+              >
+                <div
+                  class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl shrink-0"
+                >
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div>
+                  <span
+                    class="text-xs font-mono text-slate-400 dark:text-slate-500 block"
+                    >Current Location</span
+                  >
+                  <span
+                    class="text-sm font-semibold text-slate-800 dark:text-white"
+                  >
+                    Uttar Pradesh, India (Open to Remote / Relocation)
+                  </span>
+                </div>
+              </div>
+
+              <div
+                class="p-5 rounded-2xl bg-gradient-to-br from-brand-600 to-indigo-700 text-white shadow-lg shadow-brand-500/20"
+              >
+                <div
+                  class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-brand-200 mb-1"
+                >
+                  <i class="fa-solid fa-chess"></i> Strategic Collabs
+                </div>
+                <p class="text-sm text-brand-50 font-normal leading-relaxed">
+                  "Small, well-factored steps create grand architectural
+                  outcomes." Ready to jump into high-impact engineering squads.
+                </p>
+              </div>
+            </div>
+
+            <!-- Interactive Contact Form (Right) -->
+            <div class="lg:col-span-7">
+              <div
+                class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border shadow-md"
+              >
+                <form
+                  id="contactForm"
+                  onsubmit="handleContactSubmit(event)"
+                  class="space-y-4"
+                >
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        for="senderName"
+                        class="block text-xs font-mono uppercase text-slate-600 dark:text-slate-300 mb-1.5"
+                        >Your Name *</label
+                      >
+                      <input
+                        type="text"
+                        id="senderName"
+                        required
+                        placeholder="Saksham Bajpai"
+                        class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm transition"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        for="senderEmail"
+                        class="block text-xs font-mono uppercase text-slate-600 dark:text-slate-300 mb-1.5"
+                        >Your Email *</label
+                      >
+                      <input
+                        type="email"
+                        id="senderEmail"
+                        required
+                        placeholder="sakshambajpaihdi@gmail.com"
+                        class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm transition"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      for="subject"
+                      class="block text-xs font-mono uppercase text-slate-600 dark:text-slate-300 mb-1.5"
+                      >Subject</label
+                    >
+                    <input
+                      type="text"
+                      id="subject"
+                      placeholder="Project Inquiry / Job Opportunity"
+                      class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm transition"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      for="message"
+                      class="block text-xs font-mono uppercase text-slate-600 dark:text-slate-300 mb-1.5"
+                      >Message *</label
+                    >
+                    <textarea
+                      id="message"
+                      rows="4"
+                      required
+                      placeholder="Hi Saksham, let's talk about building..."
+                      class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm transition"
+                    ></textarea>
+                  </div>
+
+                  <div class="flex items-center justify-between pt-2">
+                    <span class="text-xs text-slate-500 dark:text-slate-400"
+                      >Typically replies within 24 hours</span
+                    >
+                    <button
+                      type="submit"
+                      id="submitBtn"
+                      class="px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm shadow-md shadow-brand-500/25 transition flex items-center gap-2"
+                    >
+                      <span>Send Message</span>
+                      <i class="fa-regular fa-paper-plane text-xs"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      class="border-t border-slate-200 dark:border-dark-border bg-white dark:bg-dark-bg py-8"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+      >
+        <div class="flex items-center gap-2">
+          <span
+            class="w-7 h-7 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-xs"
+            >SB</span
+          >
+          <span class="text-xs text-slate-500 dark:text-slate-400">
+            &copy; 2026 Saksham Bajpai. Built with clean code &amp; modern web
+            standards.
+          </span>
+        </div>
+
+        <div
+          class="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400"
+        >
+          <a
+            href="#hero"
+            class="hover:text-brand-600 dark:hover:text-white transition"
+            >Back to Top</a
+          >
+          <span>•</span>
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-brand-600 dark:hover:text-white transition"
+            >GitHub</a
+          >
+          <span>•</span>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-brand-600 dark:hover:text-white transition"
+            >LinkedIn</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Project Deep-Dive Modal -->
+    <div
+      id="projectModal"
+      class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm transition-opacity"
+    >
+      <div
+        class="bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border rounded-2xl max-w-2xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-2xl relative"
+      >
+        <button
+          onclick="closeProjectModal()"
+          class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 dark:hover:text-white transition p-1"
+          aria-label="Close dialog"
+        >
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+
+        <div id="modalContent">
+          <!-- Injected via JavaScript based on selected project -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Toast Box -->
+    <div
+      id="toast"
+      class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none"
+    >
+      <div
+        class="px-4 py-3 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-xl flex items-center gap-3 border border-slate-700 dark:border-slate-200 text-sm"
+      >
+        <i
+          id="toastIcon"
+          class="fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600"
+        ></i>
+        <span id="toastMessage">Action completed successfully</span>
+      </div>
+    </div>
+
+    <script>
+      // Theme toggle handling
+      const htmlElement = document.documentElement;
+      const themeToggleBtn = document.getElementById("themeToggleBtn");
+      const themeIcon = document.getElementById("themeIcon");
+
+      function syncThemeIcons() {
+        if (htmlElement.classList.contains("dark")) {
+          themeIcon.className = "fa-solid fa-sun text-sm text-amber-400";
+        } else {
+          themeIcon.className = "fa-solid fa-moon text-sm text-slate-700";
+        }
+      }
+
+      // Default theme initialized to dark
+      syncThemeIcons();
+
+      themeToggleBtn.addEventListener("click", () => {
+        htmlElement.classList.toggle("dark");
+        syncThemeIcons();
+        showToast(
+          htmlElement.classList.contains("dark")
+            ? "Switched to Dark Mode"
+            : "Switched to Light Mode",
+        );
+      });
+
+      // Mobile Hamburger Menu Toggle
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Close mobile menu on click
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      });
+
+      // Project Filter Logic
+      function filterProjects(filter) {
+        const cards = document.querySelectorAll(".project-card");
+        const buttons = document.querySelectorAll(".project-filter-btn");
+
+        // Update button styling
+        buttons.forEach((btn) => {
+          btn.classList.remove("bg-brand-600", "text-white");
+          btn.classList.add("text-slate-600", "dark:text-slate-300");
+        });
+
+        const activeBtn = document.getElementById(`filter-${filter}`);
+        if (activeBtn) {
+          activeBtn.classList.remove("text-slate-600", "dark:text-slate-300");
+          activeBtn.classList.add("bg-brand-600", "text-white");
+        }
+
+        cards.forEach((card) => {
+          const categories = card.getAttribute("data-category").split(",");
+          if (filter === "all" || categories.includes(filter)) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+      }
+
+      // Project Details Data
+      const projectDetails = {
+        lnn: {
+          title: "LNN-Nivaaran (जनमित्र)",
+          tagline: "AI-Powered Civic Redressal & Spatial Intelligence Platform",
+          overview:
+            "Designed for municipal corporations to streamline citizen complaints, prevent fraudulent issue submissions using image analysis, and prioritize road hazard & sanitation reports.",
+          stack: [
+            "Next.js 15",
+            "React 19",
+            "Google Gemini API",
+            "Supabase PostgreSQL",
+            "Leaflet Maps",
+            "Recharts",
+          ],
+          features: [
+            "Zero-friction grievance logging with automatic classification & priority assignment via Gemini Vision API.",
+            "Interactive ward-level Leaflet map displaying heatmaps of unresolved civic infrastructure concerns.",
+            "Real-time analytics portal giving municipal officers time-to-resolution metrics and ward performance breakdowns.",
+          ],
+          repo: "https://github.com",
+        },
+        quickbasket: {
+          title: "QuickBasket",
+          tagline: "Scalable Full-Stack E-Commerce Engine & RESTful APIs",
+          overview:
+            "An enterprise-grade headless grocery commerce application built with modular Express.js controllers, JWT authentication, and structured database transactions.",
+          stack: [
+            "Node.js",
+            "Express.js",
+            "PostgreSQL",
+            "JWT Authentication",
+            "Swagger UI",
+            "REST APIs",
+          ],
+          features: [
+            "Granular role-based access control (Admin, Merchant, Customer) protecting financial transaction endpoints.",
+            "Live API documentation powered by OpenAPI & Swagger UI for developer integration.",
+            "Resilient order processing logic managing concurrent inventory decrements and transactional integrity.",
+          ],
+          repo: "https://github.com",
+        },
+        emailai: {
+          title: "Smart Email Assistant",
+          tagline: "Contextual Corporate Email Writer & Response Generator",
+          overview:
+            "A specialized productivity suite utilizing Java 21, Spring Boot 3, and Spring AI to parse incoming client emails and formulate context-appropriate replies.",
+          stack: [
+            "Java 21",
+            "Spring Boot 3",
+            "Spring AI",
+            "React.js",
+            "RESTful Web Services",
+          ],
+          features: [
+            "Multi-tone response generator supporting professional negotiation, formal executive, and friendly collaborative tones.",
+            "Spring AI layer that standardizes system prompts and keeps LLM context sanitized.",
+            "Reactive UI with instant single-click clipboard export and draft history caching.",
+          ],
+          repo: "https://github.com",
+        },
+      };
+
+      const modal = document.getElementById("projectModal");
+      const modalContent = document.getElementById("modalContent");
+
+      function openProjectModal(key) {
+        const data = projectDetails[key];
+        if (!data) return;
+
+        modalContent.innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 rounded bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300 text-xs font-mono font-medium">Architecture Review</span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white">${data.title}</h3>
+          <p class="text-sm font-medium text-brand-600 dark:text-brand-400">${data.tagline}</p>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${data.overview}</p>
+          
+          <div class="pt-2">
+            <h4 class="text-xs font-mono uppercase text-slate-400 dark:text-slate-500 mb-2 font-semibold">Key Capabilities</h4>
+            <ul class="space-y-2 text-xs text-slate-700 dark:text-slate-300">
+              ${data.features.map((f) => `<li class="flex items-start gap-2"><i class="fa-solid fa-check-circle text-brand-500 mt-0.5"></i><span>${f}</span></li>`).join("")}
+            </ul>
+          </div>
+
+          <div class="pt-2">
+            <h4 class="text-xs font-mono uppercase text-slate-400 dark:text-slate-500 mb-2 font-semibold">Technologies Utilized</h4>
+            <div class="flex flex-wrap gap-1.5">
+              ${data.stack.map((s) => `<span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-800 dark:text-slate-200">${s}</span>`).join("")}
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-slate-100 dark:border-dark-border flex items-center justify-end gap-3">
+            <button onclick="closeProjectModal()" class="px-4 py-2 text-xs font-medium rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-dark-surface transition">Close</button>
+            <a href="${data.repo}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-xs font-semibold rounded-lg bg-brand-600 hover:bg-brand-500 text-white transition flex items-center gap-1.5">
+              <i class="fa-brands fa-github text-xs"></i>
+              <span>View Repository</span>
+            </a>
+          </div>
+        </div>
+      `;
+
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeProjectModal() {
+        modal.classList.add("hidden");
+        document.body.style.overflow = "auto";
+      }
+
+      // Close modal on backdrop click
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeProjectModal();
+        }
+      });
+
+      // Toast Notification helper
+      function showToast(message, isError = false) {
+        const toast = document.getElementById("toast");
+        const toastMsg = document.getElementById("toastMessage");
+        const toastIcon = document.getElementById("toastIcon");
+
+        toastMsg.textContent = message;
+        if (isError) {
+          toastIcon.className = "fa-solid fa-circle-exclamation text-rose-500";
+        } else {
+          toastIcon.className = "fa-solid fa-circle-check text-emerald-400";
+        }
+
+        toast.classList.remove(
+          "translate-y-24",
+          "opacity-0",
+          "pointer-events-none",
+        );
+        toast.classList.add("translate-y-0", "opacity-100");
+
+        setTimeout(() => {
+          toast.classList.remove("translate-y-0", "opacity-100");
+          toast.classList.add(
+            "translate-y-24",
+            "opacity-0",
+            "pointer-events-none",
+          );
+        }, 3500);
+      }
+
+      // Resume Download Handler
+      function downloadResumePlaceholder() {
+        showToast("Resume downloaded / ready for review!");
+      }
+
+      // Contact Form Submission Handler
+      function handleContactSubmit(e) {
+        e.preventDefault();
+        const name = document.getElementById("senderName").value.trim();
+        const email = document.getElementById("senderEmail").value.trim();
+        const subject =
+          document.getElementById("subject").value.trim() || "General Inquiry";
+        const message = document.getElementById("message").value.trim();
+
+        if (!name || !email || !message) {
+          showToast("Please fill out all required fields.", true);
+          return;
+        }
+
+        // Simulate sending via submit state
+        const submitBtn = document.getElementById("submitBtn");
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-xs"></i> Sending...`;
+
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+          showToast(`Thank you ${name}! Your message has been noted.`);
+          document.getElementById("contactForm").reset();
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
