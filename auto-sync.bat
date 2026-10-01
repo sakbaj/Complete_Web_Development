@@ -5,7 +5,7 @@ cd /d C:\CompleteWebDevelopment
 git add .
 git diff --cached --quiet
 
-if %errorlevel% neq 0 (
+if errorlevel 1 (
     git commit -m "Auto sync"
     git push origin main
 )
